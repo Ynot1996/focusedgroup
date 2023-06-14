@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>S&P 500</title>
+  <link rel="shortcut icon" href="https://img.icons8.com/dusk/64/null/internet--v1.png" />
+  <link rel="stylesheet" href="../../static/css/styles.min.css" />
+
+  <!-- For Flask, Jinja2 (Path is different)-->
+  <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.min.css') }}">
+</head>
+
+
+<body>
+
+  <!--  Main wrapper Start-->
+  <div class="body-wrapper">
+
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+    <!--  Header Start -->
+    <header class="app-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+
+        <!-- Home button -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <!-- Change automatically to other Path if this cannot use -->
+            <a id="myLink" class="nav-link nav-icon-hover" href="../../homepage.html"><i class="ti ti-home"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-icon-hover" href="frontpage.html">FG 財經</a>
+          </li>
+        </ul>
+
+        <!-- Account button -->
+        <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+          <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+            <li class="nav-item dropdown">
+
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="../../static/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                <div class="message-body">
+                  <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                    <i class="ti ti-user fs-6"></i>
+                    <p class="mb-0 fs-3">My Profile</p>
+                  </a>
+                  <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                    <i class="ti ti-mail fs-6"></i>
+                    <p class="mb-0 fs-3">My Account</p>
+                  </a>
+                  <a href="" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                </div>
+              </div>
+
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+    </header>
+    <!--  Header End -->
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+    <!-- Content Start -->
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <!-- 1.left column Start___________________________________________________________________________________ -->
+        <div class="col-lg-8 d-flex align-items-strech">
+          <div class="card w-100">
+
+            <!-- Market Trends -->
+            <div class="card-body">
+              <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                <div class="mb-3 mb-sm-0">
+                  <h5 class="card-title fw-semibold">標準普爾500指數</h5>
+                </div>
+                <div>
+                  <select class="form-select" id="mySelect">
+                    <option value="../../static/images/sp500_trend.jpg">半年走勢圖</option>
+                    <option value="../../static/images/sp_5.png">周線-預測圖</option>
+                    <option value="../../static/images/sp_20.png">月線-預測圖</option>
+                    <option value="../../static/images/sp_60.png">季線-預測圖</option>
+                  </select>
+                </div>
+              </div>
+              <img id="myImage" src="..\../static\images\sp500_trend.jpg" style="width: 650px; height: 500px;">
+            </div>
+
+            <!-- Global Markets -->
+            <div class="card-body p-4">
+              <h5 class="card-title fw-semibold mb-4">全球市場</h5>
+              <div class="table-responsive">
+
+                <table class="table text-nowrap mb-0 align-middle">
+                  <tbody>
+
+                    <tr>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge bg-black rounded-2 fw-semibold"><a href="sp500.html">S&P 500</a></span>
+                        </div>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">
+                          標準普爾500指數</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0 fs-4">4,132.94</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="text-success fw-semibold mb-0 fs-4">-3.46</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge bg-success rounded-3 fw-semibold">&#9660;0.11%</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge bg-black rounded-2 fw-semibold"><a href="dowjones.html">Dow
+                              Jones</a></span>
+                        </div>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">道瓊工業平均指數</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0 fs-4">33,625.21</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="text-success fw-semibold mb-0 fs-4">-49.17</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge bg-success rounded-3 fw-semibold">&#9660;0.15%</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge bg-black rounded-2 fw-semibold"><a href="nasdaq.html">NASDAQ</a></span>
+                        </div>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">那斯達克綜合指數</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0 fs-4">12,217.16</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="text-success fw-semibold mb-0 fs-4">-18.25</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge bg-success rounded-3 fw-semibold">&#9660;0.15%</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge bg-black rounded-2 fw-semibold"><a href="#">NI225</a></span>
+                        </div>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">日經平均指數</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0 fs-4">28,949.88</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="text-success fw-semibold mb-0 fs-4">-208.07</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge bg-success rounded-3 fw-semibold">&#9660;0.71%</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge bg-black rounded-2 fw-semibold"><a href="#">TAIEX</a></span>
+                        </div>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">台灣加權股價指數</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0 fs-4">15,699.57</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="text-danger fw-semibold mb-0 fs-4">+73.50</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <span class="badge bg-danger rounded-3 fw-semibold">&#9650;0.47%</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- 1.left column End______________________________________________________________________________________ -->
+
+        <!-- 2.Right column Start___________________________________________________________________________________ -->
+        <div class="col-lg-4">
+
+          <!-- Market Trends -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card overflow-hidden">
+                <div class="card-body p-4">
+                  <h5 class="card-title mb-9 fw-semibold">市場趨勢</h5>
+                  <div class="row align-items-center">
+                    <div class="col-8">
+                      <div class="d-flex align-items-center" style="width: 350px; height: 70px;">
+                        <div class="me-4" style="width: 120px; height: 30px;">
+                          <span class="round-8 bg-primary rounded-circle me-1 d-inline-block"></span>
+                          <span class="fs-4">元宇宙</span>
+                        </div>
+                        <div class="me-4" style="width: 120px; height: 30px;">
+                          <span class="round-8 bg-primary rounded-circle me-1 d-inline-block"></span>
+                          <span class="fs-4">AI數據</span>
+                        </div>
+                        <div class="me-4" style="width: 120px; height: 30px;">
+                          <span class="round-8 bg-primary rounded-circle me-1 d-inline-block"></span>
+                          <span class="fs-4">加密貨幣</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wiki Section -->
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+
+                <div class="row alig n-items-start">
+
+                  <div class="col-8" onclick="toggleContent()">
+                    <h5 class="card-title mb-9 fw-semibold"> 簡介 </h5>
+                  </div>
+
+                  <div id="content">
+                    <p>標準普爾500指數（Standard & Poor's 500），簡稱S&P 500
+                      、標普500或史坦普500，是一個由1957年起記錄美國股市的平均記錄，觀察範圍達500隻普通股，佔總市值約80%。標準普爾500指數由標普道瓊指數公司（S&P Dow Jones
+                      Indices
+                      LLC，標準普爾全球控股公司控制的合資公司）開發並繼續維持。指數內的500隻普通股（包括不動產投資信託）都是在美國股市的兩大股票交易市場，紐約證券交易所和美國全國證券業協會行情自動傳報系統（納斯達克、NASDAQ）中有多個交易的公司。幾乎所有標準普爾中的公司都是全美最高金額買賣的500隻股票。這個股票指數由標準普爾公司創建並維護。
+
+                      與道瓊指數相比，標準普爾500包含的公司更多，產業也更加多樣，因此風險更為分散，能夠反映更廣泛的市場變化。此外，相較於道瓊指數抓股價加權，標普500指數是採用市值加權，更能反映公司股票在股市上實際的重要性。在標準普爾500大公司指數後面，還有代表中型公司的標準普爾中型股400指數，及較小型公司的標準普爾600小型股指數，加總為標準普爾1500綜合指數。
+
+                      標準普爾500指數、道瓊工業平均指數、納斯達克100指數及羅素2000指數是美國最重要的股票指數。四個主要指數均有標準、迷你及微型期貨或選擇權可供投資者交易。</p>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- News Section -->
+          <div class="col-lg-12">
+            <div class="card overflow-hidden rounded-2">
+              <div class="position-relative">
+                <a href="https://www.dailyfxasia.com/cn/cmarkets/20230501-23859.html" target="_blank"><img
+                    src="../../static/images/01.jpeg" class="card-img-top rounded-0" alt="..." height="200px"></a>
+              </div>
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">標普500、納斯達克100指數展望：陰雲之下繼續向上</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0"><span class="ms-2 fw-normal text-muted fs-3">2023/5/1 06:41</span>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <div class="card overflow-hidden rounded-2">
+              <div class="position-relative">
+                <a href="https://www.dailyfxasia.com/cn/outlook/20230501-4711.html" target="_blank"><img
+                    src="../../static/images/02.jpeg" class="card-img-top rounded-0" alt="..." height="200px"></a>
+              </div>
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">美元「王炸」來襲：美國聯準會升息和美國非農，美指何去何從？</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0"><span class="ms-2 fw-normal text-muted fs-3">2023/5/1 05:37</span>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- 2.Right column End______________________________________________________________________________________ -->
+
+      </div>
+    </div>
+    <!-- Content End -->
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+
+  </div>
+  <!--  Main wrapper End-->
+
+  <!-- For Market Trends -->
+  <script>
+    const mySelect = document.getElementById('mySelect');
+    const myImage = document.getElementById('myImage');
+    mySelect.addEventListener('change', function () {
+      myImage.src = mySelect.value;
+    });
+  </script>
+
+  <!-- For Wiki -->
+  <script>
+    function toggleContent() {
+      let x = document.getElementById("content");
+      let y = document.getElementById("myArrow");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+  </script>
+
+  <!-- 首頁按鈕無法連至../../homepage.html(預設路徑錯誤時，嘗試第二個路徑) -->
+  <!-- <script>
+    var link = document.getElementById("myLink");
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      checkLink();
+    });
+
+    function checkLink() {
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("HEAD", "../../homepage.html", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            window.location.href = "../../homepage.html";
+          } else {
+            window.location.href = "../homepage.html";
+          }
+        }
+      };
+      xhr.send();
+    }
+  </script> -->
+
+  <script src="../../static/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../../static/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../static/js/sidebarmenu.js"></script>
+  <script src="../../static/js/app.min.js"></script>
+  <script src="../../static/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="../../static/libs/simplebar/dist/simplebar.js"></script>
+  <script src="../../static/js/dashboard.js"></script>
+
+  <!-- For Flask, Jinja2 (Paths are different)-->
+  <script src="{{ url_for('static', filename='../static/libs/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='../static/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='../static/js/sidebarmenu.js') }}"></script>
+  <script src="{{ url_for('static', filename='../static/js/app.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='../static/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='../static/libs/simplebar/dist/simplebar.js') }}"></script>
+  <script src="{{ url_for('static', filename='../static/js/dashboard.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<title>Elite Team</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="shortcut icon" href="https://img.icons8.com/dusk/64/null/internet--v1.png" />
+	<link rel="stylesheet" href="../static/assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="../static/assets/css/noscript.css" />
+	</noscript>
+
+	<!-- For jinja2 -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+	<noscript>
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}">
+	</noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<a href="homepage.html" class="logo">Focused Group</a>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li><a href="homepage.html">聚焦金融</a></li>
+				<li class="active"><a href="member.html">專業團隊</a></li>
+				<!-- Change automatically to other Path if this cannot use -->
+				<li><a id="myLink" href="stock/templates/frontpage.html">成果展示</a></li>
+			</ul>
+			<ul class="icons">
+				<li><a href="https://github.com/Ynot1996/focusedgroup" class="icon brands fa-github"
+						target="_blank"><span class="label">GitHub</span></a></li>
+			</ul>
+		</nav>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Post -->
+			<section class="post">
+				<header class="major">
+					<h1>菁英團隊<br />
+						Elite team</h1>
+					<p>我們是一個由五位成員組成的團隊，每個人都對於技術領域有著深刻的熱忱。我們非常注重團隊合作和溝通，這使得我們能夠在項目中高效地協同工作，創造出最佳的結果。
+						我們的團隊成員每個人都有各自擅長的領域，從前端設計到後端開發、LSTM模型開發和網路爬蟲等技術領域，我們相輔相成，共同發揮出最大的潛力。
+						我們相信，最好的成果是通過優秀的團隊合作所產生的。因此，我們致力於協同工作，融合我們的技術經驗和知識，以提供最佳的技術服務。我們的最終目標是通過技術解決方案，實現客戶的成功和滿意。</p>
+				</header>
+				<div class="image main"><img src="../static/assets/images/06.jpg" alt="" width="450px" /></div>
+
+				<ul>
+					<li>
+						<h3>張源智 (小組組長)</h3>
+						<img src="../static/assets/images/jason.jpg" alt="成員一照片" style="width: 300px; height: 300px;">
+						<p></p>
+					</li>
+					<li>
+						<h3>張堂垚 (模型製作)</h3>
+						<img src="../static/assets/images/rondolph.jpg" alt="成員二照片"
+							style="width: 300px; height: 300px;">
+						<p></p>
+					</li>
+					<li>
+						<h3>吳奕辰 (前端設計)</h3>
+						<img src="../static/assets/images/ted.jpg" alt="成員三照片" style="width: 300px; height: 300px;">
+						<p></p>
+					</li>
+					<li>
+						<h3>許堪佑 (數據爬蟲)</h3>
+						<img src="../static/assets/images/leg.jpg" alt="成員四照片" style="width: 300px; height: 300px;">
+						<p></p>
+					</li>
+					<li>
+						<h3>康文騰 (前後端整合)</h3>
+						<img src="../static/assets/images/tony.jpeg" alt="成員五照片" style="width: 300px; height: 300px;">
+						<p></p>
+					</li>
+				</ul>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+
+	<!-- 首頁按鈕無法連至frontpage.html(因路徑錯誤時，嘗試第二個路徑) -->
+	<!-- <script>
+		var link = document.getElementById("myLink");
+		link.addEventListener("click", function (event) {
+			event.preventDefault();
+			checkLink();
+		});
+
+		function checkLink() {
+
+			var xhr = new XMLHttpRequest();
+			xhr.open("HEAD", "stock/templates/frontpage.html", true);
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 4) {
+					if (xhr.status === 200) {
+						window.location.href = "stock/templates/frontpage.html";
+					} else {
+						window.location.href = "FG Finance/frontpage.html";
+					}
+				}
+			};
+			xhr.send();
+		}
+	</script> -->
+
+	<script src="../static/assets/js/jquery.min.js"></script>
+	<script src="../static/assets/js/jquery.scrollex.min.js"></script>
+	<script src="../static/assets/js/jquery.scrolly.min.js"></script>
+	<script src="../static/assets/js/browser.min.js"></script>
+	<script src="../static/assets/js/breakpoints.min.js"></script>
+	<script src="../static/assets/js/util.js"></script>
+	<script src="../static/assets/js/main.js"></script>
+
+	<!-- For Jinja2 -->
+	<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/jquery.scrollex.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/jquery.scrolly.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+</body>
+
+</html>
