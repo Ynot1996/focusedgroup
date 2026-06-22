@@ -1,0 +1,7 @@
+# Offline ML pipeline (training/backtest) — NOT installed on the web server.
+# Run locally or in CI (GitHub Actions). The Flask app only reads the JSON
+# artifacts these produce, so it stays lightweight on Render.
+numpy>=1.26
+pandas>=2.0
+scikit-learn>=1.4
+requests>=2.31
