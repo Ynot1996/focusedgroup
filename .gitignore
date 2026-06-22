@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# macOS
+.DS_Store
+._*
+
+# Data / DB (regenerated, not tracked)
+data/*.db
+*.sqlite3
+news.csv
+
+# IDE
+.vscode/
+.idea/

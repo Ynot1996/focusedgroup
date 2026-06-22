@@ -1,5 +1,6 @@
-import csv
 from flask import Flask, render_template, url_for
+
+from focusedgroup.news.repo import get_latest
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -26,10 +27,13 @@ def frontpage():
 @app.route("/stock/templates/frontpage(dynamic news).html")
 def frontpage_dynamic_news():
 
-    with open("news.csv", "r", encoding="big5") as f:
-        data = f.readlines()
+    news = get_latest(limit=10)
 
-    rows = [row.strip().split(",") for row in data]
+    # The template reads rows[1..4] as [title, link, date, image_url] (rows[0]
+    # used to be the CSV header). Keep that shape so the template is untouched
+    # for now; it gets cleaned up to a loop in the blueprint refactor.
+    rows = [["", "", "", ""]]
+    rows += [[n["title"], n["link"], n["date"], n["image_url"] or ""] for n in news]
 
     return render_template("FG finance/frontpage(dynamic news).html", rows=rows)
 
