@@ -4,7 +4,7 @@ A small Flask site showcasing LSTM-based stock-index forecasts (S&P 500, Dow
 Jones, NASDAQ) with a business-news feed. English is the default UI language,
 with a one-click switch to Chinese (中文).
 
-Live: http://focusedgroup.online/
+Live: https://focusedgroup.onrender.com
 
 ## Architecture
 
