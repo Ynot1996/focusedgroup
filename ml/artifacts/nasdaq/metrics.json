@@ -6,6 +6,13 @@
   ],
   "direction": {
     "accuracy": 0.5515,
+    "served_model": "gbdt",
+    "model_comparison": {
+      "gbdt": 0.5515,
+      "logistic": 0.5548,
+      "extratrees": 0.5607,
+      "ensemble": 0.5585
+    },
     "baseline_always_up": 0.5607,
     "baseline_persistence": 0.4956,
     "auc": 0.4994,
@@ -24,5 +31,5 @@
   "symbol": "^IXIC",
   "key": "nasdaq",
   "horizon_days": 1,
-  "generated_at": "2026-06-23T01:15:58.115125+00:00"
+  "generated_at": "2026-06-23T01:35:10.432032+00:00"
 }

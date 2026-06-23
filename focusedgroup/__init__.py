@@ -34,4 +34,22 @@ def create_app() -> Flask:
     app.register_blueprint(main_bp)
     app.register_blueprint(stock_bp)
 
+    _seed_news_if_empty()
+
     return app
+
+
+def _seed_news_if_empty() -> None:
+    """On a fresh deploy the news DB is empty (it's gitignored, not shipped).
+
+    Pull the latest headlines once at startup so the site isn't blank. Best
+    effort — never let a news hiccup stop the app from booting.
+    """
+    try:
+        from .news.crawler import crawl_news
+        from .news.repo import get_latest, save_news
+
+        if not get_latest(limit=1):
+            save_news(crawl_news())
+    except Exception:
+        pass

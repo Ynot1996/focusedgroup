@@ -6,6 +6,13 @@
   ],
   "direction": {
     "accuracy": 0.5394,
+    "served_model": "gbdt",
+    "model_comparison": {
+      "gbdt": 0.5394,
+      "logistic": 0.5375,
+      "extratrees": 0.55,
+      "ensemble": 0.5482
+    },
     "baseline_always_up": 0.546,
     "baseline_persistence": 0.4838,
     "auc": 0.4863,
@@ -24,5 +31,5 @@
   "symbol": "^GSPC",
   "key": "sp500",
   "horizon_days": 1,
-  "generated_at": "2026-06-23T01:11:41.628762+00:00"
+  "generated_at": "2026-06-23T01:28:53.389104+00:00"
 }

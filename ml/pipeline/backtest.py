@@ -13,7 +13,7 @@ import pandas as pd
 from sklearn.metrics import brier_score_loss, roc_auc_score
 
 from .features import FEATURE_COLUMNS, make_dataset
-from .model import make_gbdt, make_logistic, make_quantile
+from .model import make_ensemble, make_quantile
 
 TRADING_DAYS = 252
 
@@ -42,22 +42,37 @@ def walk_forward(
     n = len(usable)
 
     rows = []  # (idx, prob_up, y, fwd_ret, q_lo, q_hi)
+    component_probs: dict[str, list] = {}
     i = initial_train
     while i < n:
         end = min(i + step, n)
-        gbdt = make_gbdt().fit(X[:i], y[:i])
+        ens = make_ensemble().fit(X[:i], y[:i])
         ql = make_quantile(q_low).fit(X[:i], fwd[:i])
         qh = make_quantile(q_high).fit(X[:i], fwd[:i])
 
-        proba = gbdt.predict_proba(X[i:end])[:, 1]
+        # GBDT is the served model (best in backtest); we still record the
+        # other components and the soft-vote ensemble for an honest comparison.
+        proba = ens.named_estimators_["gbdt"].predict_proba(X[i:end])[:, 1]
         lo = ql.predict(X[i:end])
         hi = qh.predict(X[i:end])
+        # Per-component probabilities, to compare each model vs the ensemble.
+        for name, est in ens.named_estimators_.items():
+            component_probs.setdefault(name, []).extend(est.predict_proba(X[i:end])[:, 1])
         for k in range(end - i):
             rows.append((i + k, proba[k], y[i + k], fwd[i + k], lo[k], hi[k]))
         i = end
 
     res = pd.DataFrame(rows, columns=["idx", "prob_up", "y", "fwd_ret", "q_lo", "q_hi"])
     pred_up = (res["prob_up"] > 0.5).astype(int)
+    y_arr = res["y"].to_numpy()
+
+    def _acc(probs) -> float:
+        return round(float(((np.asarray(probs) > 0.5).astype(int) == y_arr).mean()), 4)
+
+    # Per-model accuracy + the soft-vote ensemble (mean of component probs).
+    model_comparison = {name: _acc(p) for name, p in component_probs.items()}
+    ensemble_avg = np.mean([component_probs[n] for n in component_probs], axis=0)
+    model_comparison["ensemble"] = _acc(ensemble_avg)
 
     # --- direction metrics ---
     acc = float((pred_up == res["y"]).mean())
@@ -89,6 +104,8 @@ def walk_forward(
         ],
         "direction": {
             "accuracy": round(acc, 4),
+            "served_model": "gbdt",
+            "model_comparison": model_comparison,
             "baseline_always_up": round(always_up_acc, 4),
             "baseline_persistence": round(persist_acc, 4),
             "auc": round(auc, 4),

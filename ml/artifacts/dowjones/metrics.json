@@ -6,6 +6,13 @@
   ],
   "direction": {
     "accuracy": 0.539,
+    "served_model": "gbdt",
+    "model_comparison": {
+      "gbdt": 0.539,
+      "logistic": 0.5235,
+      "extratrees": 0.5423,
+      "ensemble": 0.5416
+    },
     "baseline_always_up": 0.5445,
     "baseline_persistence": 0.4996,
     "auc": 0.4929,
@@ -24,5 +31,5 @@
   "symbol": "^DJI",
   "key": "dowjones",
   "horizon_days": 1,
-  "generated_at": "2026-06-23T01:13:46.632886+00:00"
+  "generated_at": "2026-06-23T01:32:23.208136+00:00"
 }
