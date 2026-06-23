@@ -5,31 +5,31 @@
     "2026-06-18"
   ],
   "direction": {
-    "accuracy": 0.5515,
+    "accuracy": 0.5526,
     "served_model": "gbdt",
     "model_comparison": {
-      "gbdt": 0.5515,
+      "gbdt": 0.5526,
       "logistic": 0.5548,
       "extratrees": 0.5607,
-      "ensemble": 0.5585
+      "ensemble": 0.5589
     },
     "baseline_always_up": 0.5607,
     "baseline_persistence": 0.4956,
-    "auc": 0.4994,
-    "brier": 0.2473
+    "auc": 0.4924,
+    "brier": 0.2477
   },
   "strategy_1d": {
-    "model_total_return": 3.2353,
+    "model_total_return": 3.6633,
     "buy_hold_total_return": 4.437,
-    "model_sharpe": 0.741,
+    "model_sharpe": 0.781,
     "buy_hold_sharpe": 0.829
   },
   "range": {
     "target_coverage": 0.8,
-    "actual_coverage": 0.7222
+    "actual_coverage": 0.72
   },
   "symbol": "^IXIC",
   "key": "nasdaq",
   "horizon_days": 1,
-  "generated_at": "2026-06-23T01:35:10.432032+00:00"
+  "generated_at": "2026-06-23T13:24:37.502259+00:00"
 }
