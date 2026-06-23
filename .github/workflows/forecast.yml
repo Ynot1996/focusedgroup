@@ -1,0 +1,41 @@
+name: Daily forecast
+
+# Refresh the ML forecast artifacts every weekday morning (UTC), then commit
+# them back. The push updates ml/artifacts/, which triggers Render to redeploy
+# with the latest predictions. Can also be run manually from the Actions tab.
+on:
+  schedule:
+    - cron: "30 6 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install ML deps
+        run: pip install -r requirements-ml.txt
+
+      - name: Run forecast pipeline
+        run: python -m ml.pipeline.run
+
+      - name: Commit updated artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ml/artifacts
+          if git diff --staged --quiet; then
+            echo "No artifact changes."
+          else
+            git commit -m "chore: refresh forecast artifacts [skip ci]"
+            git push
+          fi

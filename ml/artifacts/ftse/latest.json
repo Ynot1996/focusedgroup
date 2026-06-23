@@ -1,0 +1,15 @@
+{
+  "symbol": "^FTSE",
+  "key": "ftse",
+  "as_of": "2026-06-19",
+  "horizon_days": 1,
+  "last_close": 10363.3,
+  "prob_up": 0.5514,
+  "direction": "up",
+  "confidence": 0.1029,
+  "range_low": 10257.48,
+  "range_high": 10459.24,
+  "range_coverage": 0.8,
+  "backtest_accuracy": 0.5374,
+  "generated_at": "2026-06-23T01:18:42.043761+00:00"
+}

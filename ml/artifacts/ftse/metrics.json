@@ -1,0 +1,28 @@
+{
+  "n_predictions": 2730,
+  "oos_period": [
+    "2015-08-20",
+    "2026-06-18"
+  ],
+  "direction": {
+    "accuracy": 0.5374,
+    "baseline_always_up": 0.5348,
+    "baseline_persistence": 0.4982,
+    "auc": 0.5282,
+    "brier": 0.2488
+  },
+  "strategy_1d": {
+    "model_total_return": 0.877,
+    "buy_hold_total_return": 0.6179,
+    "model_sharpe": 0.481,
+    "buy_hold_sharpe": 0.365
+  },
+  "range": {
+    "target_coverage": 0.8,
+    "actual_coverage": 0.7509
+  },
+  "symbol": "^FTSE",
+  "key": "ftse",
+  "horizon_days": 1,
+  "generated_at": "2026-06-23T01:18:40.982978+00:00"
+}
