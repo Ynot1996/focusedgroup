@@ -1,0 +1,15 @@
+{
+  "symbol": "^DJI",
+  "key": "dowjones",
+  "as_of": "2026-06-22",
+  "horizon_days": 1,
+  "last_close": 51712.71,
+  "prob_up": 0.5443,
+  "direction": "up",
+  "confidence": 0.0886,
+  "range_low": 51446.45,
+  "range_high": 52156.91,
+  "range_coverage": 0.8,
+  "backtest_accuracy": 0.539,
+  "generated_at": "2026-06-23T01:13:47.672371+00:00"
+}

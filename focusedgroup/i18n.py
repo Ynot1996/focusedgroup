@@ -105,6 +105,26 @@ TRANSLATIONS = {
         "tag.metaverse": "Metaverse",
         "tag.ai_data": "AI Data",
         "tag.crypto": "Crypto",
+        # --- ML forecast card ---
+        "forecast.title": "AI Forecast — Next Session",
+        "forecast.prob_up": "Probability of rise",
+        "forecast.direction": "Direction",
+        "forecast.up": "Up",
+        "forecast.down": "Down",
+        "forecast.confidence": "Confidence",
+        "forecast.range": "Predicted range (80%)",
+        "forecast.last_close": "Last close",
+        "forecast.as_of": "Based on close of",
+        "forecast.backtest": "Backtest accuracy",
+        "forecast.vs_baseline": "always-up baseline",
+        "forecast.sharpe": "Strategy Sharpe",
+        "forecast.buyhold": "buy & hold",
+        "forecast.none": "Forecast not generated yet — run the ML pipeline.",
+        "forecast.disclaimer": (
+            "Educational only, not investment advice. Daily index direction is "
+            "largely unpredictable; we show honest walk-forward backtests against "
+            "naive baselines, not guarantees."
+        ),
     },
     "zh": {
         "nav.finance": "聚焦金融",
@@ -186,6 +206,25 @@ TRANSLATIONS = {
         "tag.metaverse": "元宇宙",
         "tag.ai_data": "AI數據",
         "tag.crypto": "加密貨幣",
+        # --- ML forecast card ---
+        "forecast.title": "AI 預測 — 下一交易日",
+        "forecast.prob_up": "上漲機率",
+        "forecast.direction": "預測方向",
+        "forecast.up": "看漲",
+        "forecast.down": "看跌",
+        "forecast.confidence": "信心度",
+        "forecast.range": "預測區間（80%）",
+        "forecast.last_close": "前收盤",
+        "forecast.as_of": "基準收盤日",
+        "forecast.backtest": "回測準確率",
+        "forecast.vs_baseline": "永遠看漲基準",
+        "forecast.sharpe": "策略 Sharpe",
+        "forecast.buyhold": "買進持有",
+        "forecast.none": "預測尚未產生——請先執行 ML pipeline。",
+        "forecast.disclaimer": (
+            "僅供學習，非投資建議。每日指數方向大致不可預測；我們呈現對照基準線的"
+            "誠實 walk-forward 回測，而非任何保證。"
+        ),
     },
 }
 

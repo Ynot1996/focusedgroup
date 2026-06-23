@@ -1,0 +1,28 @@
+{
+  "n_predictions": 2718,
+  "oos_period": [
+    "2015-08-27",
+    "2026-06-18"
+  ],
+  "direction": {
+    "accuracy": 0.5515,
+    "baseline_always_up": 0.5607,
+    "baseline_persistence": 0.4956,
+    "auc": 0.4994,
+    "brier": 0.2473
+  },
+  "strategy_1d": {
+    "model_total_return": 3.2353,
+    "buy_hold_total_return": 4.437,
+    "model_sharpe": 0.741,
+    "buy_hold_sharpe": 0.829
+  },
+  "range": {
+    "target_coverage": 0.8,
+    "actual_coverage": 0.7222
+  },
+  "symbol": "^IXIC",
+  "key": "nasdaq",
+  "horizon_days": 1,
+  "generated_at": "2026-06-23T01:15:58.115125+00:00"
+}

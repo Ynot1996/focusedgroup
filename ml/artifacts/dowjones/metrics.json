@@ -1,0 +1,28 @@
+{
+  "n_predictions": 2718,
+  "oos_period": [
+    "2015-08-27",
+    "2026-06-18"
+  ],
+  "direction": {
+    "accuracy": 0.539,
+    "baseline_always_up": 0.5445,
+    "baseline_persistence": 0.4996,
+    "auc": 0.4929,
+    "brier": 0.249
+  },
+  "strategy_1d": {
+    "model_total_return": 1.5323,
+    "buy_hold_total_return": 2.105,
+    "model_sharpe": 0.594,
+    "buy_hold_sharpe": 0.689
+  },
+  "range": {
+    "target_coverage": 0.8,
+    "actual_coverage": 0.7244
+  },
+  "symbol": "^DJI",
+  "key": "dowjones",
+  "horizon_days": 1,
+  "generated_at": "2026-06-23T01:13:46.632886+00:00"
+}

@@ -1,8 +1,9 @@
-"""Run the full offline pipeline and write artifacts the web app serves.
+"""Run the offline pipeline for one or more indices and write artifacts.
 
-  python -m ml.pipeline.run
+  python -m ml.pipeline.run            # all configured indices
+  python -m ml.pipeline.run sp500      # just one
 
-Produces under ml/artifacts/:
+For each index key it writes ml/artifacts/<key>/{metrics.json, latest.json}:
   metrics.json  — walk-forward backtest results (the credibility numbers)
   latest.json   — the current forecast (P(up), predicted price range)
 """
@@ -11,10 +12,11 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import sys
 from pathlib import Path
 
 from .backtest import walk_forward
-from .data import DEFAULT_SYMBOL, fetch_ohlcv
+from .data import fetch_ohlcv
 from .features import FEATURE_COLUMNS, make_dataset
 from .model import make_gbdt, make_quantile
 
@@ -22,26 +24,30 @@ ARTIFACTS = Path(__file__).resolve().parents[1] / "artifacts"
 HORIZON = 1
 Q_LOW, Q_HIGH = 0.1, 0.9
 
+# Page key -> Yahoo symbol. Keys match the stock blueprint endpoints.
+SYMBOLS = {
+    "sp500": "^GSPC",
+    "dowjones": "^DJI",
+    "nasdaq": "^IXIC",
+    "ftse": "^FTSE",
+}
 
-def main(symbol: str = DEFAULT_SYMBOL) -> None:
-    ARTIFACTS.mkdir(parents=True, exist_ok=True)
+
+def run_symbol(key: str, symbol: str) -> dict:
     df = fetch_ohlcv(symbol)
 
     # 1) Honest backtest.
     metrics = walk_forward(df, horizon=HORIZON, q_low=Q_LOW, q_high=Q_HIGH)
-    metrics["symbol"] = symbol
-    metrics["horizon_days"] = HORIZON
-    metrics["generated_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
-    (ARTIFACTS / "metrics.json").write_text(json.dumps(metrics, indent=2))
+    metrics.update(symbol=symbol, key=key, horizon_days=HORIZON,
+                   generated_at=dt.datetime.now(dt.timezone.utc).isoformat())
 
     # 2) Final models on all labelled data -> forecast the latest close.
     labelled, train_mask, latest_mask = make_dataset(df, horizon=HORIZON)
     train = labelled[train_mask]
-    X_train, y_train, fwd_train = (
-        train[FEATURE_COLUMNS].to_numpy(),
-        train["up"].to_numpy(),
-        train["fwd_ret"].to_numpy(),
-    )
+    X_train = train[FEATURE_COLUMNS].to_numpy()
+    y_train = train["up"].to_numpy()
+    fwd_train = train["fwd_ret"].to_numpy()
+
     gbdt = make_gbdt().fit(X_train, y_train)
     ql = make_quantile(Q_LOW).fit(X_train, fwd_train)
     qh = make_quantile(Q_HIGH).fit(X_train, fwd_train)
@@ -54,6 +60,7 @@ def main(symbol: str = DEFAULT_SYMBOL) -> None:
 
     forecast = {
         "symbol": symbol,
+        "key": key,
         "as_of": latest.index[0].date().isoformat(),
         "horizon_days": HORIZON,
         "last_close": round(last_close, 2),
@@ -66,15 +73,24 @@ def main(symbol: str = DEFAULT_SYMBOL) -> None:
         "backtest_accuracy": metrics["direction"]["accuracy"],
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
     }
-    (ARTIFACTS / "latest.json").write_text(json.dumps(forecast, indent=2))
 
-    print("=== Backtest ===")
-    print(json.dumps(metrics["direction"], indent=2))
-    print(json.dumps(metrics["strategy_1d"], indent=2))
-    print(json.dumps(metrics["range"], indent=2))
-    print("=== Latest forecast ===")
-    print(json.dumps(forecast, indent=2))
+    out_dir = ARTIFACTS / key
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "metrics.json").write_text(json.dumps(metrics, indent=2))
+    (out_dir / "latest.json").write_text(json.dumps(forecast, indent=2))
+    return forecast
+
+
+def main(keys: list[str] | None = None) -> None:
+    keys = keys or list(SYMBOLS)
+    for key in keys:
+        symbol = SYMBOLS[key]
+        print(f"--- {key} ({symbol}) ---")
+        fc = run_symbol(key, symbol)
+        print(f"  P(up)={fc['prob_up']}  dir={fc['direction']}  "
+              f"close={fc['last_close']}  range=[{fc['range_low']}, {fc['range_high']}]  "
+              f"backtest_acc={fc['backtest_accuracy']}")
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:] or None)

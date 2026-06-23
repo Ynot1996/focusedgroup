@@ -3,6 +3,7 @@
 from flask import Blueprint, render_template
 
 from ..news.repo import get_latest
+from ..prediction.loader import get_forecast, get_metrics
 
 stock_bp = Blueprint("stock", __name__, url_prefix="/stock")
 
@@ -24,16 +25,22 @@ def news():
     return render_template("FG finance/frontpage(dynamic news).html", rows=rows)
 
 
+def _index_page(key, template):
+    return render_template(
+        template, forecast=get_forecast(key), metrics=get_metrics(key)
+    )
+
+
 @stock_bp.route("/sp500")
 def sp500():
-    return render_template("FG finance/sp500.html")
+    return _index_page("sp500", "FG finance/sp500.html")
 
 
 @stock_bp.route("/dowjones")
 def dowjones():
-    return render_template("FG finance/dowjones.html")
+    return _index_page("dowjones", "FG finance/dowjones.html")
 
 
 @stock_bp.route("/nasdaq")
 def nasdaq():
-    return render_template("FG finance/nasdaq.html")
+    return _index_page("nasdaq", "FG finance/nasdaq.html")
