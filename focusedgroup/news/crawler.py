@@ -1,68 +1,74 @@
-"""Business-news crawler.
+"""UK business-news crawler.
 
-Exposes ``crawl_news()`` as a plain function so it can be called from a route,
-a scheduled job, or a test — instead of running on import like the old script.
+Reads The Guardian's Business RSS feed (UK-focused, free, stable) instead of
+scraping HTML — RSS is far less brittle than the old LTN page scraper. Exposes
+``crawl_news()`` as a plain function so it can be called from a route, a
+scheduled job, or a test. Old (LTN) rows already in the store are kept; this
+just adds the latest UK headlines.
 """
 
-from datetime import date, datetime
+from __future__ import annotations
+
+import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 
 import requests
-from bs4 import BeautifulSoup
 
-NEWS_URL = "https://news.ltn.com.tw/list/breakingnews/business"
+NEWS_URL = "https://www.theguardian.com/uk/business/rss"
+_MEDIA_NS = {"media": "http://search.yahoo.com/mrss/"}
 
 
-def crawl_news(url: str = NEWS_URL, timeout: int = 10) -> list[dict]:
-    """Fetch the latest business headlines and return them as a list of dicts.
+def _image_url(item: ET.Element) -> str | None:
+    """Pick an image from <media:content> or <enclosure>, if present."""
+    medias = item.findall("media:content", _MEDIA_NS)
+    if medias:
+        # Prefer a mid-size image; fall back to the first.
+        best = max(medias, key=lambda m: int(m.get("width") or 0))
+        return best.get("url")
+    enc = item.find("enclosure")
+    return enc.get("url") if enc is not None else None
 
-    Each item: ``{"title", "link", "date", "image_url"}``.
-    Returns an empty list if the request fails, so callers never crash on a
-    network hiccup.
+
+def _format_date(pub: str | None) -> str:
+    if not pub:
+        return ""
+    try:
+        return parsedate_to_datetime(pub).strftime("%Y/%m/%d %H:%M")
+    except (TypeError, ValueError):
+        return ""
+
+
+def crawl_news(url: str = NEWS_URL, timeout: int = 15) -> list[dict]:
+    """Fetch the latest UK business headlines as a list of dicts.
+
+    Each item: ``{"title", "link", "date", "image_url"}``. Returns an empty list
+    if the request or parse fails, so callers never crash on a network hiccup.
     """
     try:
-        res = requests.get(url, timeout=timeout)
+        res = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=timeout)
         res.raise_for_status()
-    except requests.RequestException:
+        root = ET.fromstring(res.content)
+    except (requests.RequestException, ET.ParseError):
         return []
 
-    soup = BeautifulSoup(res.text, "html.parser")
     items = []
-
-    for node in soup.select("ul.list > li"):
-        anchor = node.select_one("a")
-        if anchor is None:
-            continue
-
-        title = (anchor.get("title") or "").strip()
-        link = anchor.get("href", "")
+    for item in root.findall(".//item"):
+        title = (item.findtext("title") or "").strip()
+        link = (item.findtext("link") or "").strip()
         if not title or not link:
             continue
-
-        # The list only carries HH:MM; pin it to today's date.
-        time_node = node.select_one("span.time")
-        time_str = time_node.text.strip() if time_node else ""
-        try:
-            t = datetime.strptime(time_str, "%H:%M").time()
-            published = datetime.combine(date.today(), t).strftime("%Y/%m/%d %H:%M")
-        except ValueError:
-            published = ""
-
-        img = node.select_one("img")
-        image_url = img.get("data-src") if img is not None else None
-
         items.append(
             {
                 "title": title,
                 "link": link,
-                "date": published,
-                "image_url": image_url,
+                "date": _format_date(item.findtext("pubDate")),
+                "image_url": _image_url(item),
             }
         )
-
     return items
 
 
 if __name__ == "__main__":
     # Manual smoke test: python -m focusedgroup.news.crawler
     for row in crawl_news():
-        print(row)
+        print(row["date"], "|", row["title"])
