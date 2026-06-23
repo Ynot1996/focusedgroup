@@ -58,6 +58,20 @@ TRANSLATIONS = {
             "applications, blockchain in healthcare and the VR metaverse, and how to bring "
             "these to Taiwan — with a focus on economic value, policy, and sustainability."
         ),
+        # --- homepage redesign ---
+        "home.fc_kicker": "AI-modelled",
+        "home.fc_heading": "Tomorrow's market outlook",
+        "home.fc_sub": "Next-session direction and an 80% range for the major indices — from a model held to an honest walk-forward backtest, not a promise.",
+        "home.fc_view": "View details",
+        "home.fc_acc": "backtest acc.",
+        "home.feat_heading": "What this project actually does",
+        "home.feat1_t": "Probabilistic forecasts",
+        "home.feat1_b": "Daily up/down probability and a price range for major indices — calibrated, not hand-waved.",
+        "home.feat2_t": "Honest backtesting",
+        "home.feat2_b": "Every number is earned by walk-forward testing against naive baselines. No cherry-picking.",
+        "home.feat3_t": "UK market news",
+        "home.feat3_b": "Live business headlines from the Guardian, refreshed automatically each day.",
+        "home.insights": "Latest insights",
         # --- footer ---
         "footer.name": "Name",
         "footer.email": "Email",
@@ -165,6 +179,19 @@ TRANSLATIONS = {
             "本高峰會活動以專場與圓桌論壇進行交流，探討產業生態系整合、AI人工智能的應用、區塊鏈在健康長照、VR元宇宙等領域"
             "的應用，以及如何落地台灣場域的應用。此外，更關注於其經濟價值和法律政策，幫助產業各方更深了解未來走向。"
         ),
+        "home.fc_kicker": "AI 模型",
+        "home.fc_heading": "明日市場展望",
+        "home.fc_sub": "主要指數的下一交易日方向與 80% 區間——來自經過誠實 walk-forward 回測的模型，而非空話。",
+        "home.fc_view": "查看詳情",
+        "home.fc_acc": "回測準確",
+        "home.feat_heading": "這個專案實際在做什麼",
+        "home.feat1_t": "機率型預測",
+        "home.feat1_b": "主要指數的每日漲跌機率與價格區間——經過校準，不靠臆測。",
+        "home.feat2_t": "誠實回測",
+        "home.feat2_b": "每個數字都來自對照基準線的 walk-forward 測試，不挑好看的呈現。",
+        "home.feat3_t": "英國市場新聞",
+        "home.feat3_b": "來自 Guardian 的即時財經頭條，每日自動更新。",
+        "home.insights": "最新觀點",
         "footer.name": "姓名",
         "footer.email": "電子郵件",
         "footer.message": "訊息",

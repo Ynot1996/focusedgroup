@@ -12,6 +12,44 @@
 	<noscript>
 		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}">
 	</noscript>
+
+	<style>
+		#main { max-width: none !important; width: 100% !important; margin: 0 !important; padding: 0 !important; background: #181d23 !important; }
+		#footer { background: #14181d !important; }
+		.fg-wrap { max-width: 1140px; margin: 0 auto; padding: 0 2rem; }
+		.fg-sec { padding: 4.5rem 0; }
+		.fg-kicker { color: #2fcab0; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 0.6rem; }
+		.fg-h2 { color: #f3f5f7; font-size: 2.1rem; line-height: 1.2; margin: 0 0 0.8rem; font-weight: 700; }
+		.fg-lead { color: #97a1ac; font-size: 1.05rem; line-height: 1.7; max-width: 640px; margin: 0; }
+		.fg-grid { display: grid; gap: 1.25rem; margin-top: 2.5rem; }
+		.fg-cards-4 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+		.fg-cards-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+		.fg-card { background: #21272f; border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 1.6rem; transition: border-color .2s, transform .2s; }
+		.fg-card:hover { border-color: rgba(47,202,176,0.5); transform: translateY(-3px); }
+		.fg-fc-name { display: flex; align-items: center; justify-content: space-between; color: #c9d1da; font-size: 0.95rem; font-weight: 600; margin-bottom: 1rem; }
+		.fg-fc-as { color: #6f7882; font-size: 0.72rem; font-weight: 400; }
+		.fg-prob { font-size: 2.7rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+		.fg-prob small { font-size: 0.95rem; font-weight: 500; color: #8a939d; margin-left: 0.4rem; }
+		.fg-up { color: #34d39e; }
+		.fg-down { color: #f0685a; }
+		.fg-fc-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: #9aa3ad; margin-top: 1.1rem; font-variant-numeric: tabular-nums; }
+		.fg-fc-row b { color: #d6dce2; font-weight: 600; }
+		.fg-fc-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 1.3rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.07); }
+		.fg-fc-acc { color: #7d8893; font-size: 0.78rem; }
+		.fg-link { color: #2fcab0; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+		.fg-link:hover { color: #5fe0cb; }
+		.fg-feat { text-align: left; }
+		.fg-feat .fg-ic { width: 46px; height: 46px; border-radius: 12px; background: rgba(47,202,176,0.12); color: #2fcab0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1rem; }
+		.fg-feat h3 { color: #eef1f4; font-size: 1.15rem; margin: 0 0 0.5rem; }
+		.fg-feat p { color: #919ba6; font-size: 0.95rem; line-height: 1.65; margin: 0; }
+		.fg-news { overflow: hidden; padding: 0; }
+		.fg-news .fg-img { height: 168px; background-size: cover; background-position: center; background-color: #2a3138; }
+		.fg-news .fg-body { padding: 1.3rem 1.4rem 1.5rem; }
+		.fg-news .fg-date { color: #2fcab0; font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; }
+		.fg-news h3 { color: #e8ebee; font-size: 1.02rem; line-height: 1.45; margin: 0.5rem 0 0; }
+		.fg-divider { border: 0; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
+		@media (max-width: 736px) { .fg-h2 { font-size: 1.7rem; } .fg-sec { padding: 3rem 0; } }
+	</style>
 </head>
 
 <body class="is-preload">
@@ -51,75 +89,83 @@
 		<!-- Main -->
 		<div id="main">
 
-			<!-- Featured Post -->
-			<article class="post featured">
-				<header><span class="date">May 12, 2023</span>
-					<h2><a>{{ t('home.featured_title') }}</a></h2>
-					<p>{{ t('home.featured_body') }}</p>
-				</header>
-				<a class="image main"><img src="{{ url_for('static', filename='assets/images/01.jpg') }}" alt=""></a>
+			<!-- Live forecast -->
+			<section class="fg-sec">
+				<div class="fg-wrap">
+					<p class="fg-kicker">{{ t('home.fc_kicker') }}</p>
+					<h2 class="fg-h2">{{ t('home.fc_heading') }}</h2>
+					<p class="fg-lead">{{ t('home.fc_sub') }}</p>
 
-			</article>
+					<div class="fg-grid fg-cards-4">
+						{% for f in forecasts %}
+						<div class="fg-card">
+							<div class="fg-fc-name"><span>{{ f.label }}</span><span class="fg-fc-as">{{ f.as_of }}</span></div>
+							<div class="fg-prob {{ 'fg-up' if f.direction == 'up' else 'fg-down' }}">
+								{{ '▲' if f.direction == 'up' else '▼' }}{{ (f.prob_up * 100) | round(1) }}<small>% {{ t('forecast.up') if f.direction == 'up' else t('forecast.down') }}</small>
+							</div>
+							<div class="fg-fc-row"><span>{{ t('forecast.range') }}</span><b>{{ f.range_low }}–{{ f.range_high }}</b></div>
+							<div class="fg-fc-row"><span>{{ t('forecast.last_close') }}</span><b>{{ f.last_close }}</b></div>
+							<div class="fg-fc-foot">
+								<span class="fg-fc-acc">{{ (f.backtest_accuracy * 100) | round(1) }}% {{ t('home.fc_acc') }}</span>
+								<a class="fg-link" href="{{ f.url }}">{{ t('home.fc_view') }} →</a>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
 
-			<!-- Posts -->
-			<section class="posts">
+			<hr class="fg-divider">
 
-				<article>
-					<header>
-						<span class="date">April 14, 2023</span>
-						<h2><a>{{ t('home.post1_title') }}</a></h2>
-					</header>
-					<a class="image fit"><img src="{{ url_for('static', filename='assets/images/02.jpg') }}" alt="" width="500px"
-							height="300px" /></a>
-					<p>{{ t('home.post1_body') }}</p>
-					<ul class="actions special">
-						<li><a href="https://tw.news.yahoo.com/chatgpt%E7%AB%9F%E8%83%BD%E9%A0%90%E6%B8%AC%E8%82%A1%E5%83%B9-%E5%B0%88%E5%AE%B6%E5%83%85%E8%BC%B8%E5%85%A5-%E9%87%91%E8%9E%8D%E6%96%B0%E8%81%9E%E8%A7%A3%E6%9E%90-ai%E7%A7%92%E7%B2%BE%E6%BA%96%E7%B5%A6%E5%87%BA%E9%9A%94%E5%A4%A9%E8%B5%B0%E5%8B%A2-030833174.html"
-								target="_blank" class="button">{{ t('common.full_news') }}</a></li>
-					</ul>
-				</article>
+			<!-- What it does -->
+			<section class="fg-sec">
+				<div class="fg-wrap">
+					<h2 class="fg-h2">{{ t('home.feat_heading') }}</h2>
+					<div class="fg-grid fg-cards-3">
+						<div class="fg-feat">
+							<div class="fg-ic"><i class="icon solid fa-chart-line" aria-hidden="true"></i></div>
+							<h3>{{ t('home.feat1_t') }}</h3>
+							<p>{{ t('home.feat1_b') }}</p>
+						</div>
+						<div class="fg-feat">
+							<div class="fg-ic"><i class="icon solid fa-check-circle" aria-hidden="true"></i></div>
+							<h3>{{ t('home.feat2_t') }}</h3>
+							<p>{{ t('home.feat2_b') }}</p>
+						</div>
+						<div class="fg-feat">
+							<div class="fg-ic"><i class="icon solid fa-newspaper" aria-hidden="true"></i></div>
+							<h3>{{ t('home.feat3_t') }}</h3>
+							<p>{{ t('home.feat3_b') }}</p>
+						</div>
+					</div>
+				</div>
+			</section>
 
-				<article>
-					<header>
-						<span class="date">February 16, 2023</span>
-						<h2><a>{{ t('home.post2_title') }}</a></h2>
-					</header>
-					<a class="image fit"><img src="{{ url_for('static', filename='assets/images/03.jpg') }}" alt="" width="500px"
-							height="300px" /></a>
-					<p>{{ t('home.post2_body') }}</p>
-					<ul class="actions special">
-						<li><a href="https://www.bbc.com/zhongwen/trad/science-64638824" target="_blank"
-								class="button">{{ t('common.full_news') }}</a></li>
-					</ul>
-				</article>
+			<hr class="fg-divider">
 
-				<article>
-					<header>
-						<span class="date">April 28, 2023</span>
-						<h2><a>{{ t('home.post3_title') }}</a></h2>
-					</header>
-					<a class="image fit"><img src="{{ url_for('static', filename='assets/images/04.jpg') }}" alt="" width="500px"
-							height="300px" /></a>
-					<p>{{ t('home.post3_body') }}</p>
-					<ul class="actions special">
-						<li><a href="https://technews.tw/2023/04/28/heres-a-video-of-humanes-wearable-ai-projector-in-action/"
-								target="_blank" class="button">{{ t('common.full_news') }}</a></li>
-					</ul>
-				</article>
-
-				<article>
-					<header>
-						<span class="date">April 24, 2023</span>
-						<h2><a>{{ t('home.post4_title') }}</a></h2>
-					</header>
-					<a class="image fit"><img src="{{ url_for('static', filename='assets/images/05.jpg') }}" alt="" width="500px"
-							height="300px" /></a>
-					<p>{{ t('home.post4_body') }}</p>
-					<ul class="actions special">
-						<li><a href="https://www.bnext.com.tw/article/74962/ai-blockchain-summit" target="_blank"
-								class="button">{{ t('common.full_news') }}</a></li>
-					</ul>
-				</article>
-
+			<!-- Latest insights -->
+			<section class="fg-sec">
+				<div class="fg-wrap">
+					<h2 class="fg-h2">{{ t('home.insights') }}</h2>
+					<div class="fg-grid fg-cards-4">
+						<a class="fg-card fg-news" href="https://tw.news.yahoo.com/chatgpt%E7%AB%9F%E8%83%BD%E9%A0%90%E6%B8%AC%E8%82%A1%E5%83%B9-%E5%B0%88%E5%AE%B6%E5%83%85%E8%BC%B8%E5%85%A5-%E9%87%91%E8%9E%8D%E6%96%B0%E8%81%9E%E8%A7%A3%E6%9E%90-ai%E7%A7%92%E7%B2%BE%E6%BA%96%E7%B5%A6%E5%87%BA%E9%9A%94%E5%A4%A9%E8%B5%B0%E5%8B%A2-030833174.html" target="_blank">
+							<div class="fg-img" style="background-image: url('{{ url_for('static', filename='assets/images/02.jpg') }}');"></div>
+							<div class="fg-body"><span class="fg-date">Apr 14, 2023</span><h3>{{ t('home.post1_title') }}</h3></div>
+						</a>
+						<a class="fg-card fg-news" href="https://www.bbc.com/zhongwen/trad/science-64638824" target="_blank">
+							<div class="fg-img" style="background-image: url('{{ url_for('static', filename='assets/images/03.jpg') }}');"></div>
+							<div class="fg-body"><span class="fg-date">Feb 16, 2023</span><h3>{{ t('home.post2_title') }}</h3></div>
+						</a>
+						<a class="fg-card fg-news" href="https://technews.tw/2023/04/28/heres-a-video-of-humanes-wearable-ai-projector-in-action/" target="_blank">
+							<div class="fg-img" style="background-image: url('{{ url_for('static', filename='assets/images/04.jpg') }}');"></div>
+							<div class="fg-body"><span class="fg-date">Apr 28, 2023</span><h3>{{ t('home.post3_title') }}</h3></div>
+						</a>
+						<a class="fg-card fg-news" href="https://www.bnext.com.tw/article/74962/ai-blockchain-summit" target="_blank">
+							<div class="fg-img" style="background-image: url('{{ url_for('static', filename='assets/images/05.jpg') }}');"></div>
+							<div class="fg-body"><span class="fg-date">Apr 24, 2023</span><h3>{{ t('home.post4_title') }}</h3></div>
+						</a>
+					</div>
+				</div>
 			</section>
 
 		</div>
@@ -149,33 +195,26 @@
 			</section>
 
 			<section class="split contact">
-
 				<section class="alt">
 					<h3>{{ t('footer.address_label') }}</h3>
 					<p>{{ t('footer.address_value') }}<br /></p>
 				</section>
-
 				<section>
 					<h3>{{ t('footer.phone_label') }}</h3>
 					<p><a>(02) 2370-1111</a></p>
 				</section>
-
 				<section>
 					<h3>{{ t('footer.email') }}</h3>
 					<p><a>magisystem6@gmail.com</a></p>
 				</section>
-
 				<section>
 					<h3>{{ t('footer.social') }}</h3>
 					<ul class="icons alt">
 						<li><a href="https://github.com/Ynot1996/focusedgroup" class="icon brands alt fa-github"
-								target="_blank">
-								<span class="label">GitHub</span></a></li>
+								target="_blank"><span class="label">GitHub</span></a></li>
 					</ul>
 				</section>
-
 			</section>
-
 		</footer>
 
 	</div>
