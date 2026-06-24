@@ -38,6 +38,7 @@ def run_symbol(key: str, symbol: str) -> dict:
 
     # 1) Honest backtest.
     metrics = walk_forward(df, horizon=HORIZON, q_low=Q_LOW, q_high=Q_HIGH)
+    charts = metrics.pop("charts")
     metrics.update(symbol=symbol, key=key, horizon_days=HORIZON,
                    generated_at=dt.datetime.now(dt.timezone.utc).isoformat())
 
@@ -74,10 +75,32 @@ def run_symbol(key: str, symbol: str) -> dict:
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
     }
 
+    # 3) Chart series for the homepage dashboard.
+    recent = df.tail(180)
+    series = {
+        "symbol": symbol,
+        "key": key,
+        "as_of": forecast["as_of"],
+        "price": {
+            "dates": [d.date().isoformat() for d in recent.index],
+            "close": [round(float(c), 2) for c in recent["close"]],
+        },
+        "forecast": {
+            "last_close": forecast["last_close"],
+            "range_low": forecast["range_low"],
+            "range_high": forecast["range_high"],
+        },
+        "equity": charts["equity"],
+        "calibration": charts["calibration"],
+        "model_comparison": metrics["direction"]["model_comparison"],
+        "baseline_always_up": metrics["direction"]["baseline_always_up"],
+    }
+
     out_dir = ARTIFACTS / key
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "metrics.json").write_text(json.dumps(metrics, indent=2))
     (out_dir / "latest.json").write_text(json.dumps(forecast, indent=2))
+    (out_dir / "series.json").write_text(json.dumps(series, indent=2))
     return forecast
 
 

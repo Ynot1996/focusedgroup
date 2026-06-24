@@ -96,7 +96,35 @@ def walk_forward(
     inside = (res["fwd_ret"] >= res["q_lo"]) & (res["fwd_ret"] <= res["q_hi"])
     coverage = float(inside.mean())
 
+    # --- chart series (downsampled) for the homepage dashboard ---
+    eq_model = np.cumprod(1 + np.nan_to_num(strat_daily))
+    eq_bh = np.cumprod(1 + np.nan_to_num(bh_daily))
+    dates_oos = [usable.index[idx].date().isoformat() for idx in res["idx"].to_numpy()]
+    stepd = max(1, len(eq_model) // 200)
+    equity = {
+        "dates": dates_oos[::stepd],
+        "model": [round(float(v), 4) for v in eq_model[::stepd]],
+        "buyhold": [round(float(v), 4) for v in eq_bh[::stepd]],
+    }
+    # Reliability: equal-count bins of predicted prob vs realized up-rate.
+    order = np.argsort(res["prob_up"].to_numpy())
+    p_sorted = res["prob_up"].to_numpy()[order]
+    y_sorted = y_arr[order]
+    n_bins = 8
+    bin_sz = max(1, len(p_sorted) // n_bins)
+    calibration = []
+    for b in range(n_bins):
+        s = b * bin_sz
+        e = (b + 1) * bin_sz if b < n_bins - 1 else len(p_sorted)
+        if e > s:
+            calibration.append({
+                "p_pred": round(float(p_sorted[s:e].mean()), 4),
+                "p_actual": round(float(y_sorted[s:e].mean()), 4),
+                "n": int(e - s),
+            })
+
     return {
+        "charts": {"equity": equity, "calibration": calibration},
         "n_predictions": int(len(res)),
         "oos_period": [
             usable.index[res["idx"].iloc[0]].date().isoformat(),

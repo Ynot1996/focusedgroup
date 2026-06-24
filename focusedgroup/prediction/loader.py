@@ -34,6 +34,11 @@ def get_metrics(key: str) -> dict | None:
     """Walk-forward backtest metrics for an index key, or None."""
     return _read(key, "metrics.json")
 
+
+def get_series(key: str) -> dict | None:
+    """Chart series (price, equity, calibration, comparison) for an index."""
+    return _read(key, "series.json")
+
 # Forecast/trend charts per index, as static filenames under static/images/.
 # Keys mirror the stock blueprint endpoints (sp500 / dowjones / nasdaq).
 _CHARTS = {

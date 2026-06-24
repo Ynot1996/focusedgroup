@@ -1,10 +1,12 @@
-"""UK business-news crawler.
+"""UK + US stock-market news crawler.
 
-Reads The Guardian's Business RSS feed (UK-focused, free, stable) instead of
-scraping HTML — RSS is far less brittle than the old LTN page scraper. Exposes
-``crawl_news()`` as a plain function so it can be called from a route, a
-scheduled job, or a test. Old (LTN) rows already in the store are kept; this
-just adds the latest UK headlines.
+Reads RSS feeds (no scraping — far less brittle):
+  * The Guardian Business (UK, includes images)
+  * Yahoo Finance S&P 500 headlines (US markets)
+
+Exposes ``crawl_news()`` as a plain function so it can be called from a route, a
+scheduled job, or a test. Old rows already in the store are kept; this just adds
+the latest market headlines.
 """
 
 from __future__ import annotations
@@ -14,15 +16,20 @@ from email.utils import parsedate_to_datetime
 
 import requests
 
-NEWS_URL = "https://www.theguardian.com/uk/business/rss"
+# (feed url, label) — UK first, then US markets.
+FEEDS = [
+    ("https://www.theguardian.com/uk/business/rss", "Guardian"),
+    (
+        "https://feeds.finance.yahoo.com/rss/2.0/headline?s=%5EGSPC&region=US&lang=en-US",
+        "Yahoo Finance",
+    ),
+]
 _MEDIA_NS = {"media": "http://search.yahoo.com/mrss/"}
 
 
 def _image_url(item: ET.Element) -> str | None:
-    """Pick an image from <media:content> or <enclosure>, if present."""
     medias = item.findall("media:content", _MEDIA_NS)
     if medias:
-        # Prefer a mid-size image; fall back to the first.
         best = max(medias, key=lambda m: int(m.get("width") or 0))
         return best.get("url")
     enc = item.find("enclosure")
@@ -38,12 +45,7 @@ def _format_date(pub: str | None) -> str:
         return ""
 
 
-def crawl_news(url: str = NEWS_URL, timeout: int = 15) -> list[dict]:
-    """Fetch the latest UK business headlines as a list of dicts.
-
-    Each item: ``{"title", "link", "date", "image_url"}``. Returns an empty list
-    if the request or parse fails, so callers never crash on a network hiccup.
-    """
+def _parse_feed(url: str, timeout: int) -> list[dict]:
     try:
         res = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=timeout)
         res.raise_for_status()
@@ -65,6 +67,18 @@ def crawl_news(url: str = NEWS_URL, timeout: int = 15) -> list[dict]:
                 "image_url": _image_url(item),
             }
         )
+    return items
+
+
+def crawl_news(timeout: int = 15) -> list[dict]:
+    """Fetch the latest UK + US market headlines, merged across feeds.
+
+    Each item: ``{"title", "link", "date", "image_url"}`` (image may be None for
+    feeds without media). Returns whatever feeds succeed; never raises.
+    """
+    items: list[dict] = []
+    for url, _label in FEEDS:
+        items.extend(_parse_feed(url, timeout))
     return items
 
 

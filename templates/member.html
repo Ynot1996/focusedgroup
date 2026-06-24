@@ -29,7 +29,6 @@
 			<ul class="links">
 				<li><a href="{{ url_for('main.home') }}">{{ t('nav.finance') }}</a></li>
 				<li class="active"><a href="{{ url_for('main.team') }}">{{ t('nav.team') }}</a></li>
-				<li><a href="{{ url_for('stock.frontpage') }}">{{ t('nav.showcase') }}</a></li>
 			</ul>
 			<ul class="icons">
 				<li><a href="{{ url_for('main.set_language', lang='zh' if lang == 'en' else 'en') }}" class="button small">{{ t('lang.toggle') }}</a></li>
