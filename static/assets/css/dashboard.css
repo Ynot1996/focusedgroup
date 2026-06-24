@@ -1,0 +1,149 @@
+/*
+ * Focused Group — dashboard design system
+ * A single source of design truth: warm-dark tokens + composable components.
+ * Layered on top of the legacy Story template (homage hero) so the page reads
+ * as one cohesive product rather than stitched-together sections.
+ */
+
+:root {
+  --bg:          #0e1217;
+  --bg-alt:      #121822;   /* subtle section alternation (no divider lines) */
+  --surface:     #161d28;
+  --surface-2:   #1d2630;
+  --border:      rgba(255, 255, 255, 0.07);
+  --border-2:    rgba(255, 255, 255, 0.13);
+  --text:        #e7edf3;
+  --muted:       #9aa6b3;
+  --dim:         #6c7682;
+  --accent:      #4fb8a6;   /* restrained teal — used sparingly */
+  --accent-soft: rgba(79, 184, 166, 0.13);
+  --up:          #5cc99a;
+  --down:        #e3796a;
+  --price:       #6f9fd4;
+  --bench:       #d6a14d;
+  --radius:      16px;
+  --radius-sm:   10px;
+  --maxw:        1140px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ---- shell ---------------------------------------------------------------- */
+#main.dash {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: var(--bg) !important;
+  font-family: var(--font);
+  color: var(--text);
+}
+.dash * { font-family: var(--font); }
+
+/* blend the legacy photo hero + nav into the dark body (kills the hard seam) */
+#wrapper.fade-in { background: var(--bg); }
+#nav { background: rgba(14, 18, 23, 0.94) !important; border-top: 1px solid var(--border); }
+#header { background: transparent !important; }
+#intro { position: relative; }
+#intro::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22vh;
+  background: linear-gradient(transparent, var(--bg)); pointer-events: none;
+}
+#intro h1 a.enter { color: inherit; text-decoration: none; border: 0; cursor: pointer; }
+#intro h1 a.enter:hover { color: var(--accent); }
+
+/* ---- layout primitives ---------------------------------------------------- */
+.section { padding: 5.5rem 0; }
+.section.alt { background: var(--bg-alt); }
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 2rem; }
+.kicker {
+  color: var(--accent); font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 0.7rem;
+}
+.section h2.title {
+  color: var(--text); font-size: 2rem; font-weight: 700; line-height: 1.2;
+  letter-spacing: -0.01em; text-transform: none; margin: 0 0 0.7rem;
+}
+.lead { color: var(--muted); font-size: 1.04rem; line-height: 1.7; max-width: 600px; margin: 0; }
+.grid { display: grid; gap: 1.2rem; margin-top: 2.6rem; }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(264px, 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); }
+
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.6rem; transition: border-color .2s, transform .2s;
+}
+.card:hover { border-color: var(--border-2); transform: translateY(-2px); }
+
+/* ---- forecast cards ------------------------------------------------------- */
+.fcard .row-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.1rem; }
+.fcard .name { color: var(--text); font-size: 0.98rem; font-weight: 600; }
+.fcard .asof { color: var(--dim); font-size: 0.72rem; }
+.fcard .prob { font-size: 2.6rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.fcard .prob small { font-size: 0.9rem; font-weight: 500; color: var(--muted); margin-left: 0.45rem; letter-spacing: 0; }
+.fcard.up .prob { color: var(--up); }
+.fcard.down .prob { color: var(--down); }
+.fcard .meta { display: flex; justify-content: space-between; font-size: 0.84rem; color: var(--muted); margin-top: 1rem; font-variant-numeric: tabular-nums; }
+.fcard .meta b { color: var(--text); font-weight: 600; }
+.fcard .foot { margin-top: 1.2rem; padding-top: 0.95rem; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 0.45rem; color: var(--dim); font-size: 0.76rem; }
+.fcard .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; }
+
+/* ---- index selector tabs -------------------------------------------------- */
+.tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.8rem; }
+.tab {
+  background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+  padding: 0.45rem 1.1rem; border-radius: var(--radius-sm); cursor: pointer;
+  font-size: 0.86rem; font-weight: 500; font-family: var(--font); transition: .15s;
+}
+.tab:hover { color: var(--text); border-color: var(--border-2); }
+.tab.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+
+/* ---- chart cards ---------------------------------------------------------- */
+.chart-card .ch-title { color: var(--text); font-weight: 600; font-size: 0.98rem; }
+.chart-card .ch-sub { color: var(--dim); font-size: 0.76rem; margin-top: 3px; margin-bottom: 0.4rem; }
+
+/* ---- feature row ---------------------------------------------------------- */
+.feature .ic {
+  width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft);
+  color: var(--accent); display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; margin-bottom: 1rem;
+}
+.feature h3 { color: var(--text); font-size: 1.1rem; font-weight: 600; margin: 0 0 0.5rem; }
+.feature p { color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin: 0; }
+
+/* ---- news cards ----------------------------------------------------------- */
+.news-card { overflow: hidden; padding: 0; display: block; }
+.news-card .thumb { height: 150px; background-size: cover; background-position: center; background-color: var(--surface-2); }
+.news-card .thumb.ph { display: flex; align-items: center; justify-content: center; color: var(--dim); font-size: 1.8rem; }
+.news-card .body { padding: 1.1rem 1.25rem 1.3rem; }
+.news-card .src { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.72rem; letter-spacing: 0.03em; }
+.news-card h3 { color: var(--text); font-size: 0.95rem; font-weight: 500; line-height: 1.45; margin: 0.5rem 0 0; }
+.news-card .date { color: var(--dim); font-size: 0.72rem; margin-top: 0.6rem; }
+
+/* ---- footer --------------------------------------------------------------- */
+#footer.dash-foot { background: var(--bg) !important; border-top: 1px solid var(--border); padding: 0 !important; }
+.dash-foot .inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 2.3rem 2rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+}
+.dash-foot .brand { color: var(--text); font-weight: 600; font-size: 0.95rem; }
+.dash-foot .note { color: var(--dim); font-size: 0.74rem; line-height: 1.5; max-width: 640px; }
+.dash-foot a { color: var(--muted); }
+.dash-foot a:hover { color: var(--accent); }
+
+@media (max-width: 736px) {
+  .section { padding: 3.5rem 0; }
+  .section h2.title { font-size: 1.65rem; }
+}
+
+/* specificity guards — beat the legacy #main element rules (id selectors win) */
+#main.dash .kicker { color: var(--accent); text-transform: uppercase; }
+#main.dash h2.title { color: var(--text); text-transform: none; }
+#main.dash .lead { color: var(--muted); }
+#main.dash .feature h3, #main.dash .news-card h3, #main.dash .chart-card .ch-title { color: var(--text); }
+#main.dash .feature p, #main.dash .chart-card .ch-sub { color: var(--muted); }
+#main.dash .fcard .name { color: var(--text); }
+#main.dash a.news-card, #main.dash a.news-card:hover { text-decoration: none; border-bottom: 0; box-shadow: none; }
+#main.dash .news-card .date, #main.dash .fcard .asof, #main.dash .fcard .foot { color: var(--dim); }
+#main.dash .fcard.up .prob { color: var(--up); }
+#main.dash .fcard.down .prob { color: var(--down); }

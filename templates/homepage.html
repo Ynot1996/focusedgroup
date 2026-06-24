@@ -8,65 +8,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="shortcut icon" href="https://img.icons8.com/dusk/64/null/internet--v1.png" />
 
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/dashboard.css') }}">
 	<noscript>
 		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}">
 	</noscript>
-
-	<style>
-		#main { max-width: none !important; width: 100% !important; margin: 0 !important; padding: 0 !important; background: #181d23 !important; }
-		#footer { background: #14181d !important; padding: 0 !important; }
-		.fg-wrap { max-width: 1140px; margin: 0 auto; padding: 0 2rem; }
-		.fg-sec { padding: 4.5rem 0; }
-		.fg-kicker { color: #2fcab0; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 0.6rem; }
-		.fg-h2 { color: #f3f5f7; font-size: 2.1rem; line-height: 1.2; margin: 0 0 0.8rem; font-weight: 700; }
-		.fg-lead { color: #97a1ac; font-size: 1.05rem; line-height: 1.7; max-width: 640px; margin: 0; }
-		.fg-grid { display: grid; gap: 1.25rem; margin-top: 2.5rem; }
-		.fg-cards-4 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-		.fg-cards-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-		.fg-cards-2 { grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
-		.fg-card { background: #21272f; border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 1.6rem; transition: border-color .2s, transform .2s; }
-		.fg-card:hover { border-color: rgba(47,202,176,0.5); transform: translateY(-3px); }
-		.fg-fc-name { display: flex; align-items: center; justify-content: space-between; color: #c9d1da; font-size: 0.95rem; font-weight: 600; margin-bottom: 1rem; }
-		.fg-fc-as { color: #6f7882; font-size: 0.72rem; font-weight: 400; }
-		.fg-prob { font-size: 2.7rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
-		.fg-prob small { font-size: 0.95rem; font-weight: 500; color: #8a939d; margin-left: 0.4rem; }
-		.fg-up { color: #34d39e; }
-		.fg-down { color: #f0685a; }
-		.fg-fc-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: #9aa3ad; margin-top: 1.1rem; font-variant-numeric: tabular-nums; }
-		.fg-fc-row b { color: #d6dce2; font-weight: 600; }
-		.fg-fc-foot { margin-top: 1.3rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.07); color: #7d8893; font-size: 0.78rem; }
-		.fg-feat .fg-ic { width: 46px; height: 46px; border-radius: 12px; background: rgba(47,202,176,0.12); color: #2fcab0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1rem; }
-		.fg-feat h3 { color: #eef1f4; font-size: 1.15rem; margin: 0 0 0.5rem; }
-		.fg-feat p { color: #919ba6; font-size: 0.95rem; line-height: 1.65; margin: 0; }
-		.fg-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.75rem; }
-		.fg-tab { background: #21272f; border: 1px solid rgba(255,255,255,0.08); color: #9aa3ad; padding: 0.45rem 1.1rem; border-radius: 9px; cursor: pointer; font-size: 0.85rem; font-weight: 500; }
-		.fg-tab.active, .fg-tab:hover { background: rgba(47,202,176,0.14); border-color: #2fcab0; color: #2fcab0; }
-		.fg-chart .fg-ch-h { color: #dfe4e9; font-weight: 600; font-size: 0.98rem; margin-bottom: 0.4rem; display: flex; flex-direction: column; }
-		.fg-chart .fg-ch-h span { color: #7d8893; font-weight: 400; font-size: 0.76rem; margin-top: 3px; }
-		.fg-news { overflow: hidden; padding: 0; display: block; }
-		.fg-news .fg-img { height: 150px; background-size: cover; background-position: center; background-color: #2a3138; }
-		.fg-img-ph { display: flex; align-items: center; justify-content: center; color: #46515c; font-size: 2rem; background: #20262d; }
-		.fg-news .fg-body { padding: 1.1rem 1.2rem 1.3rem; }
-		.fg-news .fg-date { color: #2fcab0; font-size: 0.72rem; letter-spacing: 0.05em; }
-		.fg-news h3 { color: #e8ebee; font-size: 0.96rem; line-height: 1.45; margin: 0.45rem 0 0; font-weight: 500; }
-		.fg-divider { border: 0; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
-		.fg-foot { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 2.2rem 2rem; max-width: 1140px; margin: 0 auto; color: #7d8893; font-size: 0.85rem; flex-wrap: wrap; }
-		.fg-foot .fg-foot-note { max-width: 620px; font-size: 0.74rem; line-height: 1.5; }
-		.fg-foot a { color: #9aa3ad; }
-		#intro h1 a.fg-enter { color: inherit; text-decoration: none; border: 0; cursor: pointer; }
-		#intro h1 a.fg-enter:hover { color: #2fcab0; }
-		@media (max-width: 736px) { .fg-h2 { font-size: 1.7rem; } .fg-sec { padding: 3rem 0; } }
-	</style>
 </head>
 
 <body class="is-preload">
 
 	<div id="wrapper" class="fade-in">
 
-		<!-- Intro -->
+		<!-- Intro (homage hero) -->
 		<div id="intro">
-			<h1><a href="#header" class="scrolly fg-enter">Focused Group</a><br />
+			<h1><a href="#header" class="scrolly enter">Focused Group</a><br />
 			</h1>
 			<p>{{ t('home.tagline') }}<br />
 			<ul class="actions">
@@ -92,91 +51,86 @@
 		</nav>
 
 		<!-- Main -->
-		<div id="main">
+		<div id="main" class="dash">
 
 			<!-- Live forecast -->
-			<section class="fg-sec">
-				<div class="fg-wrap">
-					<p class="fg-kicker">{{ t('home.fc_kicker') }}</p>
-					<h2 class="fg-h2">{{ t('home.fc_heading') }}</h2>
-					<p class="fg-lead">{{ t('home.fc_sub') }}</p>
-					<div class="fg-grid fg-cards-4">
+			<section class="section">
+				<div class="container">
+					<p class="kicker">{{ t('home.fc_kicker') }}</p>
+					<h2 class="title">{{ t('home.fc_heading') }}</h2>
+					<p class="lead">{{ t('home.fc_sub') }}</p>
+					<div class="grid grid-4">
 						{% for f in forecasts %}
-						<div class="fg-card">
-							<div class="fg-fc-name"><span>{{ f.label }}</span><span class="fg-fc-as">{{ f.as_of }}</span></div>
-							<div class="fg-prob {{ 'fg-up' if f.direction == 'up' else 'fg-down' }}">
-								{{ '▲' if f.direction == 'up' else '▼' }}{{ (f.prob_up * 100) | round(1) }}<small>% {{ t('forecast.up') if f.direction == 'up' else t('forecast.down') }}</small>
-							</div>
-							<div class="fg-fc-row"><span>{{ t('forecast.range') }}</span><b>{{ f.range_low }}–{{ f.range_high }}</b></div>
-							<div class="fg-fc-row"><span>{{ t('forecast.last_close') }}</span><b>{{ f.last_close }}</b></div>
-							<div class="fg-fc-foot">{{ (f.backtest_accuracy * 100) | round(1) }}% {{ t('home.fc_acc') }}</div>
+						<div class="card fcard {{ f.direction }}">
+							<div class="row-top"><span class="name">{{ f.label }}</span><span class="asof">{{ f.as_of }}</span></div>
+							<div class="prob">{{ '▲' if f.direction == 'up' else '▼' }}{{ (f.prob_up * 100) | round(1) }}<small>% {{ t('forecast.up') if f.direction == 'up' else t('forecast.down') }}</small></div>
+							<div class="meta"><span>{{ t('forecast.range') }}</span><b>{{ f.range_low }}–{{ f.range_high }}</b></div>
+							<div class="meta"><span>{{ t('forecast.last_close') }}</span><b>{{ f.last_close }}</b></div>
+							<div class="foot"><span class="dot"></span>{{ (f.backtest_accuracy * 100) | round(1) }}% {{ t('home.fc_acc') }}</div>
 						</div>
 						{% endfor %}
 					</div>
 				</div>
 			</section>
 
-			<hr class="fg-divider">
-
-			<!-- Model performance charts -->
+			<!-- Model performance -->
 			{% if series %}
-			<section class="fg-sec">
-				<div class="fg-wrap">
-					<h2 class="fg-h2">{{ t('home.perf_heading') }}</h2>
-					<p class="fg-lead">{{ t('home.perf_sub') }}</p>
-					<div class="fg-tabs">
+			<section class="section alt">
+				<div class="container">
+					<p class="kicker">{{ t('home.perf_kicker') }}</p>
+					<h2 class="title">{{ t('home.perf_heading') }}</h2>
+					<p class="lead">{{ t('home.perf_sub') }}</p>
+					<div class="tabs">
 						{% for f in forecasts %}
-						<button class="fg-tab{% if loop.first %} active{% endif %}" data-key="{{ f.key }}">{{ f.label }}</button>
+						<button class="tab{% if loop.first %} active{% endif %}" data-key="{{ f.key }}">{{ f.label }}</button>
 						{% endfor %}
 					</div>
-					<div class="fg-grid fg-cards-2">
-						<div class="fg-card fg-chart"><div class="fg-ch-h">{{ t('chart.equity') }}<span>{{ t('chart.equity_sub') }}</span></div><div id="ch-equity"></div></div>
-						<div class="fg-card fg-chart"><div class="fg-ch-h">{{ t('chart.accuracy') }}</div><div id="ch-acc"></div></div>
-						<div class="fg-card fg-chart"><div class="fg-ch-h">{{ t('chart.price') }}</div><div id="ch-price"></div></div>
-						<div class="fg-card fg-chart"><div class="fg-ch-h">{{ t('chart.calibration') }}<span>{{ t('chart.calibration_sub') }}</span></div><div id="ch-calib"></div></div>
+					<div class="grid grid-2">
+						<div class="card chart-card"><div class="ch-title">{{ t('chart.equity') }}</div><div class="ch-sub">{{ t('chart.equity_sub') }}</div><div id="ch-equity"></div></div>
+						<div class="card chart-card"><div class="ch-title">{{ t('chart.accuracy') }}</div><div class="ch-sub">{{ t('home.perf_sub') }}</div><div id="ch-acc"></div></div>
+						<div class="card chart-card"><div class="ch-title">{{ t('chart.price') }}</div><div class="ch-sub">{{ t('forecast.range') }}</div><div id="ch-price"></div></div>
+						<div class="card chart-card"><div class="ch-title">{{ t('chart.calibration') }}</div><div class="ch-sub">{{ t('chart.calibration_sub') }}</div><div id="ch-calib"></div></div>
 					</div>
 				</div>
 			</section>
-			<hr class="fg-divider">
 			{% endif %}
 
 			<!-- What it does -->
-			<section class="fg-sec">
-				<div class="fg-wrap">
-					<h2 class="fg-h2">{{ t('home.feat_heading') }}</h2>
-					<div class="fg-grid fg-cards-3">
-						<div class="fg-feat">
-							<div class="fg-ic"><i class="icon solid fa-chart-line" aria-hidden="true"></i></div>
+			<section class="section">
+				<div class="container">
+					<p class="kicker">{{ t('home.feat_kicker') }}</p>
+					<h2 class="title">{{ t('home.feat_heading') }}</h2>
+					<div class="grid grid-3">
+						<div class="feature">
+							<div class="ic"><i class="icon solid fa-chart-line" aria-hidden="true"></i></div>
 							<h3>{{ t('home.feat1_t') }}</h3><p>{{ t('home.feat1_b') }}</p>
 						</div>
-						<div class="fg-feat">
-							<div class="fg-ic"><i class="icon solid fa-check-circle" aria-hidden="true"></i></div>
+						<div class="feature">
+							<div class="ic"><i class="icon solid fa-check-circle" aria-hidden="true"></i></div>
 							<h3>{{ t('home.feat2_t') }}</h3><p>{{ t('home.feat2_b') }}</p>
 						</div>
-						<div class="fg-feat">
-							<div class="fg-ic"><i class="icon solid fa-newspaper" aria-hidden="true"></i></div>
+						<div class="feature">
+							<div class="ic"><i class="icon solid fa-newspaper" aria-hidden="true"></i></div>
 							<h3>{{ t('home.feat3_t') }}</h3><p>{{ t('home.feat3_b') }}</p>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<hr class="fg-divider">
-
 			<!-- Market news -->
-			<section class="fg-sec">
-				<div class="fg-wrap">
-					<p class="fg-kicker">{{ t('news.sub') }}</p>
-					<h2 class="fg-h2">{{ t('news.heading') }}</h2>
-					<div class="fg-grid fg-cards-4">
+			<section class="section alt">
+				<div class="container">
+					<p class="kicker">{{ t('news.sub') }}</p>
+					<h2 class="title">{{ t('news.heading') }}</h2>
+					<div class="grid grid-4">
 						{% for n in news %}
-						<a class="fg-card fg-news" href="{{ n.link }}" target="_blank" rel="noopener">
+						<a class="card news-card" href="{{ n.link }}" target="_blank" rel="noopener">
 							{% if n.image_url %}
-							<div class="fg-img" style="background-image: url('{{ n.image_url }}');"></div>
+							<div class="thumb" style="background-image: url('{{ n.image_url }}');"></div>
 							{% else %}
-							<div class="fg-img fg-img-ph"><i class="icon solid fa-chart-line" aria-hidden="true"></i></div>
+							<div class="thumb ph"><i class="icon solid fa-chart-line" aria-hidden="true"></i></div>
 							{% endif %}
-							<div class="fg-body"><span class="fg-date">{{ n.date }}</span><h3>{{ n.title }}</h3></div>
+							<div class="body"><h3>{{ n.title }}</h3><div class="date">{{ n.date }}</div></div>
 						</a>
 						{% endfor %}
 					</div>
@@ -186,10 +140,10 @@
 		</div>
 
 		<!-- Footer -->
-		<footer id="footer">
-			<div class="fg-foot">
-				<span>Focused Group</span>
-				<span class="fg-foot-note">{{ t('forecast.disclaimer') }}</span>
+		<footer id="footer" class="dash-foot">
+			<div class="inner">
+				<span class="brand">Focused Group</span>
+				<span class="note">{{ t('forecast.disclaimer') }}</span>
 				<a href="https://github.com/Ynot1996/focusedgroup" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a>
 			</div>
 		</footer>
@@ -212,55 +166,55 @@
 		const L_MODEL = {{ t('chart.model') | tojson }};
 		const L_BH = {{ t('forecast.buyhold') | tojson }};
 		const L_PERFECT = {{ t('chart.perfect') | tojson }};
-		const AX = '#7d8893', GRID = 'rgba(255,255,255,0.06)';
-		const C_MODEL = '#2fcab0', C_BENCH = '#f0a93b', C_PRICE = '#5aa9e6';
-		const base = { background: 'transparent', toolbar: { show: false }, fontFamily: 'inherit', animations: { enabled: false } };
+		const AX = '#6c7682', GRID = 'rgba(255,255,255,0.055)';
+		const C_MODEL = '#4fb8a6', C_BENCH = '#d6a14d', C_PRICE = '#6f9fd4';
+		const base = { background: 'transparent', toolbar: { show: false }, fontFamily: 'Inter, sans-serif', animations: { enabled: false } };
 
 		function buildEquity(d) {
-			return { chart: { type: 'area', height: 240, ...base }, theme: { mode: 'dark' },
+			return { chart: { type: 'area', height: 230, ...base }, theme: { mode: 'dark' },
 				colors: [C_MODEL, C_BENCH], stroke: { width: [2.5, 2], curve: 'smooth', dashArray: [0, 5] },
-				fill: { type: 'solid', opacity: [0.14, 0] }, dataLabels: { enabled: false },
+				fill: { type: 'solid', opacity: [0.13, 0] }, dataLabels: { enabled: false },
 				series: [
 					{ name: L_MODEL, data: d.equity.dates.map((x, i) => ({ x: x, y: d.equity.model[i] })) },
 					{ name: L_BH, data: d.equity.dates.map((x, i) => ({ x: x, y: d.equity.buyhold[i] })) }],
-				xaxis: { type: 'datetime', labels: { style: { colors: AX } } },
+				xaxis: { type: 'datetime', labels: { style: { colors: AX } }, axisBorder: { show: false }, axisTicks: { show: false } },
 				yaxis: { labels: { formatter: v => v.toFixed(1) + '×', style: { colors: AX } } },
-				grid: { borderColor: GRID }, legend: { labels: { colors: '#9aa3ad' } },
+				grid: { borderColor: GRID, strokeDashArray: 3 }, legend: { labels: { colors: '#9aa6b3' }, markers: { radius: 12 } },
 				tooltip: { theme: 'dark', x: { format: 'yyyy-MM' } } };
 		}
 		function buildAcc(d) {
 			const mc = d.model_comparison;
 			const vals = [mc.gbdt, mc.logistic, mc.extratrees, mc.ensemble, d.baseline_always_up].map(v => +(v * 100).toFixed(1));
 			const mn = Math.min(...vals), mx = Math.max(...vals);
-			return { chart: { type: 'bar', height: 240, ...base }, theme: { mode: 'dark' },
-				plotOptions: { bar: { distributed: true, borderRadius: 4, columnWidth: '55%', dataLabels: { position: 'top' } } },
+			return { chart: { type: 'bar', height: 230, ...base }, theme: { mode: 'dark' },
+				plotOptions: { bar: { distributed: true, borderRadius: 5, columnWidth: '52%', dataLabels: { position: 'top' } } },
 				colors: [C_MODEL, C_MODEL, C_MODEL, C_MODEL, C_BENCH],
 				series: [{ name: 'acc', data: vals }],
-				xaxis: { categories: ['GBDT', 'Logistic', 'ExtraTrees', 'Ensemble', 'Baseline'], labels: { style: { colors: AX } } },
+				xaxis: { categories: ['GBDT', 'Logistic', 'ExtraTrees', 'Ensemble', 'Baseline'], labels: { style: { colors: AX, fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
 				yaxis: { min: Math.floor(mn - 1), max: Math.ceil(mx + 1), labels: { formatter: v => v.toFixed(0) + '%', style: { colors: AX } } },
-				legend: { show: false }, dataLabels: { enabled: true, formatter: v => v.toFixed(1) + '%', offsetY: -18, style: { colors: ['#cfd6dd'], fontWeight: 500 } },
-				grid: { borderColor: GRID }, tooltip: { theme: 'dark' } };
+				legend: { show: false }, dataLabels: { enabled: true, formatter: v => v.toFixed(1) + '%', offsetY: -18, style: { colors: ['#c4ccd4'], fontWeight: 600, fontSize: '11px' } },
+				grid: { borderColor: GRID, strokeDashArray: 3 }, tooltip: { theme: 'dark' } };
 		}
 		function buildPrice(d) {
 			const f = d.forecast;
-			return { chart: { type: 'line', height: 240, ...base }, theme: { mode: 'dark' },
+			return { chart: { type: 'line', height: 230, ...base }, theme: { mode: 'dark' },
 				colors: [C_PRICE], stroke: { width: 2, curve: 'smooth' }, dataLabels: { enabled: false },
 				series: [{ name: d.symbol, data: d.price.dates.map((x, i) => ({ x: x, y: d.price.close[i] })) }],
-				xaxis: { type: 'datetime', labels: { style: { colors: AX } } },
+				xaxis: { type: 'datetime', labels: { style: { colors: AX } }, axisBorder: { show: false }, axisTicks: { show: false } },
 				yaxis: { labels: { formatter: v => Math.round(v).toLocaleString(), style: { colors: AX } } },
-				annotations: { yaxis: [{ y: f.range_low, y2: f.range_high, fillColor: C_MODEL, opacity: 0.16, borderColor: C_MODEL, label: { text: 'next-day range', position: 'left', style: { background: C_MODEL, color: '#06231f', fontSize: '10px' } } }] },
-				grid: { borderColor: GRID }, legend: { show: false }, tooltip: { theme: 'dark', x: { format: 'yyyy-MM-dd' } } };
+				annotations: { yaxis: [{ y: f.range_low, y2: f.range_high, fillColor: C_MODEL, opacity: 0.15, borderColor: 'transparent' }] },
+				grid: { borderColor: GRID, strokeDashArray: 3 }, legend: { show: false }, tooltip: { theme: 'dark', x: { format: 'yyyy-MM-dd' } } };
 		}
 		function buildCalib(d) {
 			const pts = d.calibration.map(c => ({ x: +(c.p_pred * 100).toFixed(1), y: +(c.p_actual * 100).toFixed(1) }));
 			const xs = pts.map(p => p.x), lo = Math.floor(Math.min(...xs) - 1), hi = Math.ceil(Math.max(...xs) + 1);
-			return { chart: { type: 'line', height: 240, ...base }, theme: { mode: 'dark' },
-				colors: [C_MODEL, C_BENCH], stroke: { width: [3, 2], curve: 'straight', dashArray: [0, 6] },
-				dataLabels: { enabled: false }, markers: { size: [5, 0] },
+			return { chart: { type: 'line', height: 230, ...base }, theme: { mode: 'dark' },
+				colors: [C_MODEL, C_BENCH], stroke: { width: [3, 1.5], curve: 'straight', dashArray: [0, 6] },
+				dataLabels: { enabled: false }, markers: { size: [5, 0], strokeWidth: 0 },
 				series: [{ name: L_MODEL, data: pts }, { name: L_PERFECT, data: [{ x: lo, y: lo }, { x: hi, y: hi }] }],
-				xaxis: { type: 'numeric', min: lo, max: hi, tickAmount: 4, labels: { formatter: v => v.toFixed(0) + '%', style: { colors: AX } } },
+				xaxis: { type: 'numeric', min: lo, max: hi, tickAmount: 4, labels: { formatter: v => v.toFixed(0) + '%', style: { colors: AX } }, axisBorder: { show: false }, axisTicks: { show: false } },
 				yaxis: { min: lo, max: hi, labels: { formatter: v => v.toFixed(0) + '%', style: { colors: AX } } },
-				grid: { borderColor: GRID }, legend: { labels: { colors: '#9aa3ad' } }, tooltip: { theme: 'dark' } };
+				grid: { borderColor: GRID, strokeDashArray: 3 }, legend: { labels: { colors: '#9aa6b3' }, markers: { radius: 12 } }, tooltip: { theme: 'dark' } };
 		}
 
 		let LIVE = [];
@@ -274,12 +228,12 @@
 				if (el) { const c = new ApexCharts(el, fn(d)); c.render(); LIVE.push(c); }
 			});
 		}
-		document.querySelectorAll('.fg-tab').forEach(b => b.addEventListener('click', () => {
-			document.querySelectorAll('.fg-tab').forEach(x => x.classList.remove('active'));
+		document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
+			document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
 			b.classList.add('active');
 			render(b.dataset.key);
 		}));
-		const first = document.querySelector('.fg-tab');
+		const first = document.querySelector('.tab');
 		if (first) render(first.dataset.key);
 	</script>
 	{% endif %}
