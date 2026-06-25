@@ -272,7 +272,7 @@ TRANSLATIONS = {
         "news.heading": "市場新聞",
         "news.sub": "英美股市——每日更新",
         "splash.tag1": "Invest now, enjoy future.",
-        "splash.tag2": "你最好的金融網站。",
+        "splash.tag2": "Your best financial web.",
         "splash.enter": "進入",
         "tab.overview": "總覽",
         "tab.performance": "模型績效",
