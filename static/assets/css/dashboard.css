@@ -15,12 +15,13 @@
   --text:        #e7edf3;
   --muted:       #9aa6b3;
   --dim:         #6c7682;
-  --accent:      #4fb8a6;   /* restrained teal — used sparingly */
-  --accent-soft: rgba(79, 184, 166, 0.13);
-  --up:          #5cc99a;
-  --down:        #e3796a;
+  --accent:      #cba24e;   /* warm gold — brand accent, used sparingly */
+  --accent-soft: rgba(203, 162, 78, 0.14);
+  --accent-ink:  #2a2008;   /* text on the gold accent */
+  --up:          #e0635a;   /* red = up (TW convention), no green anywhere */
+  --down:        #6f9fd4;   /* blue = down */
   --price:       #6f9fd4;
-  --bench:       #d6a14d;
+  --bench:       #8b94a1;
   --radius:      16px;
   --radius-sm:   10px;
   --maxw:        1140px;
@@ -154,7 +155,7 @@ body.splash-body { margin: 0; background: var(--bg); font-family: var(--font); }
 .splash .tag.s { color: rgba(255,255,255,0.55); font-size: 1rem; margin-top: 0.35rem; }
 .splash .enter {
   margin-top: 2.8rem; display: inline-flex; align-items: center; gap: 0.5rem;
-  color: #06231f; background: var(--accent); border-radius: 999px; padding: 0.7rem 1.7rem;
+  color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 0.7rem 1.7rem;
   font-weight: 600; font-size: 0.95rem; transition: filter .15s, transform .15s;
 }
 .splash:hover .enter { filter: brightness(1.08); transform: translateY(-1px); }
@@ -181,8 +182,8 @@ body.app { margin: 0; background: var(--bg); color: var(--text); font-family: va
 .predict input[type=text]:focus { border-color: var(--accent); }
 .seg { display: inline-flex; border: 1px solid var(--border-2); border-radius: 10px; overflow: hidden; }
 .seg button { background: transparent; color: var(--muted); border: 0; padding: 0.72rem 1.25rem; cursor: pointer; font-family: var(--font); font-size: 0.9rem; font-weight: 500; text-transform: none; letter-spacing: 0; }
-.seg button.on { background: var(--accent); color: #06231f; }
-.btn-run { background: var(--accent); color: #06231f; border: 0; border-radius: 10px; padding: 0.72rem 1.5rem; font-weight: 600; cursor: pointer; font-family: var(--font); font-size: 0.95rem; transition: filter .15s; text-transform: none; letter-spacing: 0; }
+.seg button.on { background: var(--accent); color: var(--accent-ink); }
+.btn-run { background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 10px; padding: 0.72rem 1.5rem; font-weight: 600; cursor: pointer; font-family: var(--font); font-size: 0.95rem; transition: filter .15s; text-transform: none; letter-spacing: 0; }
 .btn-run:hover { filter: brightness(1.08); }
 .btn-run:disabled { opacity: 0.5; cursor: default; }
 .run-steps { margin-top: 1.7rem; display: none; flex-direction: column; gap: 0.65rem; }

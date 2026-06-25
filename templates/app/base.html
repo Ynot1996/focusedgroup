@@ -18,7 +18,7 @@
 
 	<header class="app-header">
 		<div class="inner">
-			<a class="app-logo" href="{{ url_for('dash.overview') }}">Focused Group</a>
+			<a class="app-logo" href="{{ url_for('main.home') }}">Focused Group</a>
 			<nav class="app-nav">
 				<a href="{{ url_for('dash.overview') }}" class="{{ 'on' if tab == 'overview' }}">{{ t('tab.overview') }}</a>
 				<a href="{{ url_for('dash.performance') }}" class="{{ 'on' if tab == 'performance' }}">{{ t('tab.performance') }}</a>

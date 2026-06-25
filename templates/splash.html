@@ -4,21 +4,43 @@
 <head>
 	<title>Focused Group</title>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="shortcut icon" href="https://img.icons8.com/dusk/64/null/internet--v1.png" />
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/dashboard.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+	<noscript>
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}">
+	</noscript>
+	<style>
+		#wrapper > .bg {
+			background-color: #1c2128 !important;
+			background-image: linear-gradient(rgba(18,22,28,0.35), rgba(18,22,28,0.78)),
+				url("{{ url_for('static', filename='assets/images/bg.jpg') }}") !important;
+			background-size: cover !important;
+			background-position: center !important;
+			opacity: 1 !important;
+		}
+	</style>
 </head>
 
-<body class="splash-body">
-	<a class="splash" href="{{ url_for('dash.overview') }}">
-		<h1 class="mark">Focused Group</h1>
-		<p class="tag">{{ t('splash.tag1') }}</p>
-		<p class="tag s">{{ t('splash.tag2') }}</p>
-		<span class="enter">{{ t('splash.enter') }} &rarr;</span>
-	</a>
+<body class="is-preload">
+
+	<div id="wrapper" class="fade-in">
+		<div class="bg"></div>
+		<!-- Homage hero: photo + wordmark + a white-outline circle to enter -->
+		<div id="intro">
+			<h1>Focused Group</h1>
+			<ul class="actions">
+				<li><a href="{{ url_for('dash.overview') }}" class="button icon solid solo fa-arrow-right" aria-label="{{ t('splash.enter') }}"></a></li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
 </body>
 
 </html>
