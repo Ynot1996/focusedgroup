@@ -140,25 +140,27 @@
 }
 
 /* ===== splash ============================================================== */
-body.splash-body { margin: 0; background: var(--bg); font-family: var(--font); }
+html, body.splash-body { margin: 0; height: 100%; background: #0e1217; }
 .splash {
-  min-height: 100vh; display: flex; flex-direction: column; align-items: center;
-  justify-content: center; text-align: center; text-decoration: none; padding: 2rem;
-  background: linear-gradient(rgba(14,18,23,0.5), rgba(14,18,23,0.92)),
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  text-align: center; text-decoration: none; padding: 2rem; font-family: var(--font);
+  background: linear-gradient(rgba(14,18,23,0.42), rgba(14,18,23,0.82)),
               url("../images/bg.jpg") center / cover no-repeat;
 }
 .splash .mark {
-  color: #fff; font-size: clamp(2.4rem, 7vw, 4.6rem); font-weight: 700;
-  letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; margin: 0;
+  color: #fff; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; margin: 0;
 }
-.splash .tag { color: rgba(255,255,255,0.82); font-size: clamp(1rem, 2.2vw, 1.3rem); margin: 1.4rem 0 0; font-weight: 400; }
-.splash .tag.s { color: rgba(255,255,255,0.55); font-size: 1rem; margin-top: 0.35rem; }
-.splash .enter {
-  margin-top: 2.8rem; display: inline-flex; align-items: center; gap: 0.5rem;
-  color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 0.7rem 1.7rem;
-  font-weight: 600; font-size: 0.95rem; transition: filter .15s, transform .15s;
+.splash .tag {
+  color: rgba(255,255,255,0.82); font-style: italic; font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.05rem, 2.4vw, 1.45rem); margin: 1.6rem 0 0;
 }
-.splash:hover .enter { filter: brightness(1.08); transform: translateY(-1px); }
+.splash .circle {
+  display: inline-flex; align-items: center; justify-content: center; width: 62px; height: 62px;
+  border: 1px solid rgba(255,255,255,0.6); border-radius: 50%; margin-top: 2.6rem;
+  color: #fff; font-size: 1.4rem; line-height: 1; transition: background .2s, border-color .2s;
+}
+.splash:hover .circle { background: rgba(255,255,255,0.12); border-color: #fff; }
 
 /* ===== app shell =========================================================== */
 body.app { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); }
