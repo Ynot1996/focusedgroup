@@ -2,3 +2,7 @@ flask>=3.0
 gunicorn>=21.0
 requests>=2.31
 beautifulsoup4>=4.12
+# Needed for on-demand ("predict any stock") live inference on the server.
+numpy>=1.26
+pandas>=2.0
+scikit-learn>=1.4

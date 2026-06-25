@@ -28,10 +28,12 @@ def create_app() -> Flask:
     def inject_i18n():
         return {"t": translate, "lang": get_lang()}
 
+    from .dash.routes import dash_bp
     from .main.routes import main_bp
     from .stock.routes import stock_bp
 
     app.register_blueprint(main_bp)
+    app.register_blueprint(dash_bp)
     app.register_blueprint(stock_bp)
 
     _seed_news_if_empty()

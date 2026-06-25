@@ -1,0 +1,133 @@
+{% extends "app/base.html" %}
+{% block title %}{{ t('tab.performance') }}{% endblock %}
+
+{% block content %}
+<section class="block">
+	<p class="kicker">{{ t('home.perf_kicker') }}</p>
+	<h2 class="title">{{ t('home.perf_heading') }}</h2>
+	<p class="lead">{{ t('home.perf_sub') }}</p>
+
+	{% if series %}
+	<div class="tabs">
+		{% for f in forecasts %}
+		<button class="tab{% if loop.first %} active{% endif %}" data-key="{{ f.key }}">{{ f.label }}</button>
+		{% endfor %}
+	</div>
+	<div class="grid grid-2">
+		<div class="card chart-card">
+			<div class="ch-head"><div><div class="ch-title">{{ t('chart.equity') }}</div><div class="ch-sub">{{ t('chart.equity_sub') }}</div></div><button class="ch-btn" data-x="equity">{{ t('chart.details') }}</button></div>
+			<div id="ch-equity"></div>
+		</div>
+		<div class="card chart-card">
+			<div class="ch-head"><div><div class="ch-title">{{ t('chart.accuracy') }}</div><div class="ch-sub">{{ t('home.perf_sub') }}</div></div><button class="ch-btn" data-x="accuracy">{{ t('chart.details') }}</button></div>
+			<div id="ch-acc"></div>
+		</div>
+		<div class="card chart-card">
+			<div class="ch-head"><div><div class="ch-title">{{ t('chart.price') }}</div><div class="ch-sub">{{ t('forecast.range') }}</div></div><button class="ch-btn" data-x="price">{{ t('chart.details') }}</button></div>
+			<div id="ch-price"></div>
+		</div>
+		<div class="card chart-card">
+			<div class="ch-head"><div><div class="ch-title">{{ t('chart.calibration') }}</div><div class="ch-sub">{{ t('chart.calibration_sub') }}</div></div><button class="ch-btn" data-x="calibration">{{ t('chart.details') }}</button></div>
+			<div id="ch-calib"></div>
+		</div>
+	</div>
+	{% endif %}
+</section>
+
+<div class="modal-bg" id="modal-bg">
+	<div class="modal">
+		<button class="x" id="modal-x" aria-label="Close">&times;</button>
+		<h3 id="modal-title"></h3>
+		<p id="modal-body"></p>
+	</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if series %}
+<script src="{{ url_for('static', filename='libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+<script>
+	const SERIES = {{ series | tojson }};
+	const L_MODEL = {{ t('chart.model') | tojson }}, L_BH = {{ t('forecast.buyhold') | tojson }}, L_PERFECT = {{ t('chart.perfect') | tojson }};
+	const XP = {
+		equity: { t: {{ t('chart.equity') | tojson }}, b: {{ t('chart.equity_x') | tojson }} },
+		accuracy: { t: {{ t('chart.accuracy') | tojson }}, b: {{ t('chart.accuracy_x') | tojson }} },
+		price: { t: {{ t('chart.price') | tojson }}, b: {{ t('chart.price_x') | tojson }} },
+		calibration: { t: {{ t('chart.calibration') | tojson }}, b: {{ t('chart.calibration_x') | tojson }} }
+	};
+	const AX = '#6c7682', GRID = 'rgba(255,255,255,0.055)';
+	const C_MODEL = '#4fb8a6', C_BENCH = '#d6a14d', C_PRICE = '#6f9fd4';
+	const base = { background: 'transparent', toolbar: { show: false }, fontFamily: 'Inter, sans-serif', animations: { enabled: false } };
+
+	function buildEquity(d) {
+		return { chart: { type: 'area', height: 250, ...base }, theme: { mode: 'dark' },
+			colors: [C_MODEL, C_BENCH], stroke: { width: [2.5, 2], curve: 'smooth', dashArray: [0, 5] },
+			fill: { type: 'solid', opacity: [0.13, 0] }, dataLabels: { enabled: false },
+			series: [{ name: L_MODEL, data: d.equity.dates.map((x, i) => ({ x, y: d.equity.model[i] })) },
+				{ name: L_BH, data: d.equity.dates.map((x, i) => ({ x, y: d.equity.buyhold[i] })) }],
+			xaxis: { type: 'datetime', labels: { style: { colors: AX } }, axisBorder: { show: false }, axisTicks: { show: false } },
+			yaxis: { labels: { formatter: v => v.toFixed(1) + '×', style: { colors: AX } } },
+			grid: { borderColor: GRID, strokeDashArray: 3 }, legend: { labels: { colors: '#9aa6b3' }, markers: { radius: 12 } },
+			tooltip: { theme: 'dark', x: { format: 'yyyy-MM' } } };
+	}
+	function buildAcc(d) {
+		const mc = d.model_comparison;
+		const vals = [mc.gbdt, mc.logistic, mc.extratrees, mc.ensemble, d.baseline_always_up].map(v => +(v * 100).toFixed(1));
+		const mn = Math.min(...vals), mx = Math.max(...vals);
+		return { chart: { type: 'bar', height: 250, ...base }, theme: { mode: 'dark' },
+			plotOptions: { bar: { distributed: true, borderRadius: 5, columnWidth: '52%', dataLabels: { position: 'top' } } },
+			colors: [C_MODEL, C_MODEL, C_MODEL, C_MODEL, C_BENCH],
+			series: [{ name: 'acc', data: vals }],
+			xaxis: { categories: ['GBDT', 'Logistic', 'ExtraTrees', 'Ensemble', 'Baseline'], labels: { style: { colors: AX, fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+			yaxis: { min: Math.floor(mn - 1), max: Math.ceil(mx + 1), labels: { formatter: v => v.toFixed(0) + '%', style: { colors: AX } } },
+			legend: { show: false }, dataLabels: { enabled: true, formatter: v => v.toFixed(1) + '%', offsetY: -18, style: { colors: ['#c4ccd4'], fontWeight: 600, fontSize: '11px' } },
+			grid: { borderColor: GRID, strokeDashArray: 3 }, tooltip: { theme: 'dark' } };
+	}
+	function buildPrice(d) {
+		const f = d.forecast;
+		return { chart: { type: 'line', height: 250, ...base }, theme: { mode: 'dark' },
+			colors: [C_PRICE], stroke: { width: 2, curve: 'smooth' }, dataLabels: { enabled: false },
+			series: [{ name: d.symbol, data: d.price.dates.map((x, i) => ({ x, y: d.price.close[i] })) }],
+			xaxis: { type: 'datetime', labels: { style: { colors: AX } }, axisBorder: { show: false }, axisTicks: { show: false } },
+			yaxis: { labels: { formatter: v => Math.round(v).toLocaleString(), style: { colors: AX } } },
+			annotations: { yaxis: [{ y: f.range_low, y2: f.range_high, fillColor: C_MODEL, opacity: 0.15, borderColor: 'transparent' }] },
+			grid: { borderColor: GRID, strokeDashArray: 3 }, legend: { show: false }, tooltip: { theme: 'dark', x: { format: 'yyyy-MM-dd' } } };
+	}
+	function buildCalib(d) {
+		const pts = d.calibration.map(c => ({ x: +(c.p_pred * 100).toFixed(1), y: +(c.p_actual * 100).toFixed(1) }));
+		const xs = pts.map(p => p.x), lo = Math.floor(Math.min(...xs) - 1), hi = Math.ceil(Math.max(...xs) + 1);
+		return { chart: { type: 'line', height: 250, ...base }, theme: { mode: 'dark' },
+			colors: [C_MODEL, C_BENCH], stroke: { width: [3, 1.5], curve: 'straight', dashArray: [0, 6] },
+			dataLabels: { enabled: false }, markers: { size: [5, 0], strokeWidth: 0 },
+			series: [{ name: L_MODEL, data: pts }, { name: L_PERFECT, data: [{ x: lo, y: lo }, { x: hi, y: hi }] }],
+			xaxis: { type: 'numeric', min: lo, max: hi, tickAmount: 4, labels: { formatter: v => v.toFixed(0) + '%', style: { colors: AX } }, axisBorder: { show: false }, axisTicks: { show: false } },
+			yaxis: { min: lo, max: hi, labels: { formatter: v => v.toFixed(0) + '%', style: { colors: AX } } },
+			grid: { borderColor: GRID, strokeDashArray: 3 }, legend: { labels: { colors: '#9aa6b3' }, markers: { radius: 12 } }, tooltip: { theme: 'dark' } };
+	}
+
+	let LIVE = [];
+	function render(key) {
+		const d = SERIES[key]; if (!d) return;
+		LIVE.forEach(c => c.destroy()); LIVE = [];
+		[['ch-equity', buildEquity], ['ch-acc', buildAcc], ['ch-price', buildPrice], ['ch-calib', buildCalib]].forEach(([id, fn]) => {
+			const el = document.getElementById(id);
+			if (el) { const c = new ApexCharts(el, fn(d)); c.render(); LIVE.push(c); }
+		});
+	}
+	document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
+		document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+		b.classList.add('active'); render(b.dataset.key);
+	}));
+	const first = document.querySelector('.tab'); if (first) render(first.dataset.key);
+
+	const mb = document.getElementById('modal-bg');
+	document.querySelectorAll('.ch-btn').forEach(b => b.addEventListener('click', () => {
+		const x = XP[b.dataset.x]; document.getElementById('modal-title').textContent = x.t;
+		document.getElementById('modal-body').textContent = x.b; mb.classList.add('show');
+	}));
+	const close = () => mb.classList.remove('show');
+	document.getElementById('modal-x').addEventListener('click', close);
+	mb.addEventListener('click', e => { if (e.target === mb) close(); });
+</script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="{{ lang }}">
+
+<head>
+	<title>Focused Group</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" href="https://img.icons8.com/dusk/64/null/internet--v1.png" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/dashboard.css') }}">
+</head>
+
+<body class="splash-body">
+	<a class="splash" href="{{ url_for('dash.overview') }}">
+		<h1 class="mark">Focused Group</h1>
+		<p class="tag">{{ t('splash.tag1') }}</p>
+		<p class="tag s">{{ t('splash.tag2') }}</p>
+		<span class="enter">{{ t('splash.enter') }} &rarr;</span>
+	</a>
+</body>
+
+</html>

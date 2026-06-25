@@ -1,0 +1,123 @@
+{% extends "app/base.html" %}
+{% block title %}{{ t('tab.overview') }}{% endblock %}
+
+{% block content %}
+<section class="block">
+	<p class="kicker">{{ t('home.fc_kicker') }}</p>
+	<h2 class="title">{{ t('ov.heading') }}</h2>
+	<p class="lead">{{ t('home.fc_sub') }}</p>
+	<div class="grid grid-4">
+		{% for f in forecasts %}
+		<div class="card fcard {{ f.direction }}">
+			<div class="row-top"><span class="name">{{ f.label }}</span><span class="asof">{{ f.as_of }}</span></div>
+			<div class="prob">{{ '▲' if f.direction == 'up' else '▼' }}{{ (f.prob_up * 100) | round(1) }}<small>% {{ t('forecast.up') if f.direction == 'up' else t('forecast.down') }}</small></div>
+			<div class="meta"><span>{{ t('forecast.range') }}</span><b>{{ f.range_low }}–{{ f.range_high }}</b></div>
+			<div class="meta"><span>{{ t('forecast.last_close') }}</span><b>{{ f.last_close }}</b></div>
+			<div class="foot"><span class="dot"></span>{{ (f.backtest_accuracy * 100) | round(1) }}% {{ t('home.fc_acc') }}</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+<section class="block">
+	<div class="predict">
+		<p class="kicker">{{ t('predict.kicker') }}</p>
+		<h2 class="title" style="margin-bottom:.35rem">{{ t('predict.heading') }}</h2>
+		<p class="lead">{{ t('predict.sub') }}</p>
+
+		<div class="predict-form">
+			<input id="pk-ticker" type="text" placeholder="{{ t('predict.ticker_ph') }}" autocomplete="off">
+			<div class="seg" id="pk-market">
+				<button type="button" data-m="US" class="on">{{ t('predict.us') }}</button>
+				<button type="button" data-m="UK">{{ t('predict.uk') }}</button>
+			</div>
+			<button class="btn-run" id="pk-run">{{ t('predict.run') }}</button>
+		</div>
+
+		<div class="run-steps" id="pk-steps">
+			<div class="run-step" data-s="0"><span class="box"></span><span>{{ t('predict.step1') }}</span></div>
+			<div class="run-step" data-s="1"><span class="box"></span><span>{{ t('predict.step2') }}</span></div>
+			<div class="run-step" data-s="2"><span class="box"></span><span>{{ t('predict.step3') }}</span></div>
+			<div class="run-step" data-s="3"><span class="box"></span><span>{{ t('predict.step4') }}</span></div>
+		</div>
+		<div class="run-err" id="pk-err"></div>
+		<div class="run-result" id="pk-result"></div>
+	</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+	const T = {
+		up: {{ t('forecast.up') | tojson }}, down: {{ t('forecast.down') | tojson }},
+		range: {{ t('forecast.range') | tojson }}, last: {{ t('forecast.last_close') | tojson }},
+		holdout: {{ t('predict.holdout') | tojson }}, days: {{ t('predict.history') | tojson }},
+		result: {{ t('predict.result') | tojson }}, again: {{ t('predict.again') | tojson }},
+		run: {{ t('predict.run') | tojson }}, running: {{ t('predict.running') | tojson }}
+	};
+	const $ = s => document.querySelector(s);
+	let market = 'US';
+	$('#pk-market').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+		$('#pk-market').querySelectorAll('button').forEach(x => x.classList.remove('on'));
+		b.classList.add('on'); market = b.dataset.m;
+	}));
+
+	const steps = [...document.querySelectorAll('.run-step')];
+	const setStep = (i, state) => {
+		const el = steps[i]; if (!el) return;
+		el.classList.remove('active', 'done');
+		const box = el.querySelector('.box');
+		if (state === 'active') { el.classList.add('active'); box.innerHTML = '<span class="spin"></span>'; }
+		else if (state === 'done') { el.classList.add('done'); box.innerHTML = '<i class="icon solid fa-check" aria-hidden="true"></i>'; }
+		else { box.innerHTML = ''; }
+	};
+
+	function resultCard(d) {
+		const dir = d.direction === 'up';
+		const acc = d.holdout_accuracy != null ? `${(d.holdout_accuracy * 100).toFixed(1)}% ${T.holdout}` : `${d.n_days.toLocaleString()} ${T.days}`;
+		return `<div class="card fcard ${d.direction}" style="max-width:360px">
+			<div class="row-top"><span class="name">${d.ticker} · ${d.market}</span><span class="asof">${d.as_of}</span></div>
+			<div class="prob">${dir ? '▲' : '▼'}${(d.prob_up * 100).toFixed(1)}<small>% ${dir ? T.up : T.down}</small></div>
+			<div class="meta"><span>${T.range}</span><b>${d.range_low}–${d.range_high}</b></div>
+			<div class="meta"><span>${T.last}</span><b>${d.last_close}</b></div>
+			<div class="foot"><span class="dot"></span>${acc}</div>
+		</div>`;
+	}
+
+	async function run() {
+		const ticker = $('#pk-ticker').value.trim();
+		if (!ticker) { $('#pk-ticker').focus(); return; }
+		$('#pk-run').disabled = true; $('#pk-run').textContent = T.running + '…';
+		$('#pk-err').classList.remove('show'); $('#pk-result').classList.remove('show');
+		$('#pk-steps').classList.add('show');
+		steps.forEach((_, i) => setStep(i, 'idle'));
+		let i = 0; setStep(0, 'active');
+		const timer = setInterval(() => { if (i < 3) { setStep(i, 'done'); i++; setStep(i, 'active'); } }, 750);
+
+		try {
+			const res = await fetch('{{ url_for('dash.api_predict') }}', {
+				method: 'POST', headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ ticker, market })
+			});
+			const data = await res.json();
+			clearInterval(timer); steps.forEach((_, k) => setStep(k, 'done'));
+			if (data.ok) {
+				$('#pk-result').innerHTML = resultCard(data);
+				$('#pk-result').classList.add('show');
+			} else {
+				$('#pk-err').textContent = data.error || 'Could not run that one.';
+				$('#pk-err').classList.add('show');
+			}
+		} catch (e) {
+			clearInterval(timer);
+			$('#pk-err').textContent = 'Network error — try again.';
+			$('#pk-err').classList.add('show');
+		} finally {
+			$('#pk-run').disabled = false; $('#pk-run').textContent = T.run;
+			setTimeout(() => $('#pk-steps').classList.remove('show'), 600);
+		}
+	}
+	$('#pk-run').addEventListener('click', run);
+	$('#pk-ticker').addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
+</script>
+{% endblock %}

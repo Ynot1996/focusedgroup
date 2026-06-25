@@ -1,0 +1,21 @@
+{% extends "app/base.html" %}
+{% block title %}{{ t('tab.news') }}{% endblock %}
+
+{% block content %}
+<section class="block">
+	<p class="kicker">{{ t('news.sub') }}</p>
+	<h2 class="title">{{ t('news.heading') }}</h2>
+	<div class="grid grid-4">
+		{% for n in news %}
+		<a class="card news-card" href="{{ n.link }}" target="_blank" rel="noopener">
+			{% if n.image_url %}
+			<div class="thumb" style="background-image: url('{{ n.image_url }}');"></div>
+			{% else %}
+			<div class="thumb ph"><i class="icon solid fa-chart-line" aria-hidden="true"></i></div>
+			{% endif %}
+			<div class="body"><h3>{{ n.title }}</h3><div class="date">{{ n.date }}</div></div>
+		</a>
+		{% endfor %}
+	</div>
+</section>
+{% endblock %}
