@@ -94,6 +94,7 @@ TRANSLATIONS = {
         "tab.performance": "Performance",
         "tab.model": "Model",
         "tab.news": "News",
+        "news.noimg": "No image",
         # --- overview + predict tool ---
         "ov.heading": "Today's market outlook",
         "predict.kicker": "On-demand inference",
@@ -278,6 +279,7 @@ TRANSLATIONS = {
         "tab.performance": "模型績效",
         "tab.model": "模型",
         "tab.news": "新聞",
+        "news.noimg": "暫無圖片",
         "ov.heading": "今日市場展望",
         "predict.kicker": "即時運算",
         "predict.heading": "預測任意股票",

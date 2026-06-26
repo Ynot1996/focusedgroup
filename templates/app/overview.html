@@ -68,7 +68,7 @@
 		el.classList.remove('active', 'done');
 		const box = el.querySelector('.box');
 		if (state === 'active') { el.classList.add('active'); box.innerHTML = '<span class="spin"></span>'; }
-		else if (state === 'done') { el.classList.add('done'); box.innerHTML = '<i class="icon solid fa-check" aria-hidden="true"></i>'; }
+		else if (state === 'done') { el.classList.add('done'); box.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'; }
 		else { box.innerHTML = ''; }
 	};
 

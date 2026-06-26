@@ -98,7 +98,7 @@
   font-size: 0.86rem; font-weight: 500; font-family: var(--font); transition: .15s;
 }
 .tab:hover { color: var(--text); border-color: var(--border-2); }
-.tab, .ch-btn { text-transform: none; letter-spacing: 0; }
+.tab, .ch-btn { text-transform: none; letter-spacing: 0; text-align: center; }
 .tab.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
 
 /* ---- chart cards ---------------------------------------------------------- */
@@ -117,7 +117,8 @@
 /* ---- news cards ----------------------------------------------------------- */
 .news-card { overflow: hidden; padding: 0; display: block; }
 .news-card .thumb { height: 150px; background-size: cover; background-position: center; background-color: var(--surface-2); }
-.news-card .thumb.ph { display: flex; align-items: center; justify-content: center; color: var(--dim); font-size: 1.8rem; }
+.news-card .thumb.ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: var(--dim); background: var(--surface-2); }
+.news-card .thumb.ph span { font-size: 0.78rem; color: var(--dim); letter-spacing: 0.02em; }
 .news-card .body { padding: 1.1rem 1.25rem 1.3rem; }
 .news-card .src { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.72rem; letter-spacing: 0.03em; }
 .news-card h3 { color: var(--text); font-size: 0.95rem; font-weight: 500; line-height: 1.45; margin: 0.5rem 0 0; }
@@ -164,7 +165,10 @@ html, body.splash-body { margin: 0; height: 100%; background: #0e1217; }
 .splash:hover .circle { background: rgba(255,255,255,0.12); border-color: #fff; }
 
 /* ===== app shell =========================================================== */
-body.app { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); }
+body.app { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body.app a { text-decoration: none; }
+body.app a, body.app button { outline: none; }
+body.app a:focus-visible, body.app button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .app-header { position: sticky; top: 0; z-index: 20; background: rgba(14,18,23,0.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
 .app-header .inner { max-width: var(--maxw); margin: 0 auto; padding: 0 2rem; height: 62px; display: flex; align-items: center; gap: 0.5rem; }
 .app-logo { color: var(--text); font-weight: 700; letter-spacing: -0.01em; text-decoration: none; font-size: 1.05rem; }
