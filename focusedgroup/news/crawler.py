@@ -2,7 +2,7 @@
 
 Reads RSS feeds (no scraping — far less brittle):
   * The Guardian Business (UK, includes images)
-  * Yahoo Finance S&P 500 headlines (US markets)
+  * MarketWatch Top Stories (US markets, includes images)
 
 Exposes ``crawl_news()`` as a plain function so it can be called from a route, a
 scheduled job, or a test. Old rows already in the store are kept; this just adds
@@ -19,10 +19,8 @@ import requests
 # (feed url, label) — UK first, then US markets.
 FEEDS = [
     ("https://www.theguardian.com/uk/business/rss", "Guardian"),
-    (
-        "https://feeds.finance.yahoo.com/rss/2.0/headline?s=%5EGSPC&region=US&lang=en-US",
-        "Yahoo Finance",
-    ),
+    # MarketWatch (US) includes article images via <media:content>.
+    ("https://feeds.content.dowjones.io/public/rss/mw_topstories", "MarketWatch"),
 ]
 _MEDIA_NS = {"media": "http://search.yahoo.com/mrss/"}
 
