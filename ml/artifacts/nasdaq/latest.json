@@ -1,15 +1,15 @@
 {
   "symbol": "^IXIC",
   "key": "nasdaq",
-  "as_of": "2026-07-02",
+  "as_of": "2026-07-06",
   "horizon_days": 1,
-  "last_close": 25832.67,
-  "prob_up": 0.5589,
+  "last_close": 26121.16,
+  "prob_up": 0.5551,
   "direction": "up",
-  "confidence": 0.1177,
-  "range_low": 25348.1,
-  "range_high": 26332.72,
+  "confidence": 0.1102,
+  "range_low": 25761.73,
+  "range_high": 26495.55,
   "range_coverage": 0.8,
-  "backtest_accuracy": 0.555,
-  "generated_at": "2026-07-06T11:19:41.791356+00:00"
+  "backtest_accuracy": 0.5552,
+  "generated_at": "2026-07-07T10:12:47.753016+00:00"
 }
