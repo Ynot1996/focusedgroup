@@ -4,12 +4,12 @@
   "as_of": "2026-07-13",
   "horizon_days": 1,
   "last_close": 7515.34,
-  "prob_up": 0.5494,
+  "prob_up": 0.5458,
   "direction": "up",
-  "confidence": 0.0988,
-  "range_low": 7458.17,
-  "range_high": 7580.81,
+  "confidence": 0.0917,
+  "range_low": 7454.9,
+  "range_high": 7580.23,
   "range_coverage": 0.8,
-  "backtest_accuracy": 0.5353,
-  "generated_at": "2026-07-14T08:35:29.212217+00:00"
+  "backtest_accuracy": 0.548,
+  "generated_at": "2026-07-15T08:43:45.732640+00:00"
 }
