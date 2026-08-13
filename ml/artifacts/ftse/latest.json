@@ -1,15 +1,15 @@
 {
   "symbol": "^FTSE",
   "key": "ftse",
-  "as_of": "2026-08-12",
+  "as_of": "2026-08-13",
   "horizon_days": 1,
-  "last_close": 10835.93,
-  "prob_up": 0.5313,
-  "direction": "up",
-  "confidence": 0.0625,
-  "range_low": 10772.03,
-  "range_high": 10896.2,
+  "last_close": 10792.96,
+  "prob_up": 0.4997,
+  "direction": "down",
+  "confidence": 0.0006,
+  "range_low": 10733.65,
+  "range_high": 10864.07,
   "range_coverage": 0.8,
-  "backtest_accuracy": 0.541,
-  "generated_at": "2026-08-12T08:09:55.188939+00:00"
+  "backtest_accuracy": 0.5236,
+  "generated_at": "2026-08-13T08:11:15.805566+00:00"
 }
