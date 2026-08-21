@@ -1,35 +1,35 @@
 {
-  "n_predictions": 2715,
+  "n_predictions": 2718,
   "oos_period": [
-    "2015-10-26",
-    "2026-08-18"
+    "2015-10-27",
+    "2026-08-19"
   ],
   "direction": {
-    "accuracy": 0.5554,
+    "accuracy": 0.5526,
     "served_model": "gbdt",
     "model_comparison": {
-      "gbdt": 0.5554,
-      "logistic": 0.5525,
-      "extratrees": 0.558,
-      "ensemble": 0.5584
+      "gbdt": 0.5526,
+      "logistic": 0.5508,
+      "extratrees": 0.5578,
+      "ensemble": 0.5563
     },
-    "baseline_always_up": 0.5584,
-    "baseline_persistence": 0.4961,
-    "auc": 0.4971,
-    "brier": 0.2475
+    "baseline_always_up": 0.5585,
+    "baseline_persistence": 0.496,
+    "auc": 0.5127,
+    "brier": 0.2474
   },
   "strategy_1d": {
-    "model_total_return": 3.742,
-    "buy_hold_total_return": 4.2299,
-    "model_sharpe": 0.793,
-    "buy_hold_sharpe": 0.813
+    "model_total_return": 4.595,
+    "buy_hold_total_return": 4.1822,
+    "model_sharpe": 0.869,
+    "buy_hold_sharpe": 0.809
   },
   "range": {
     "target_coverage": 0.8,
-    "actual_coverage": 0.7131
+    "actual_coverage": 0.7134
   },
   "symbol": "^IXIC",
   "key": "nasdaq",
   "horizon_days": 1,
-  "generated_at": "2026-08-20T07:22:42.102610+00:00"
+  "generated_at": "2026-08-21T07:22:02.310681+00:00"
 }
