@@ -3,13 +3,13 @@
   "key": "ftse",
   "as_of": "2026-08-28",
   "horizon_days": 1,
-  "last_close": 10824.26,
-  "prob_up": 0.4777,
-  "direction": "down",
-  "confidence": 0.0447,
-  "range_low": 10742.6,
-  "range_high": 10885.49,
+  "last_close": 10824.3,
+  "prob_up": 0.5156,
+  "direction": "up",
+  "confidence": 0.0313,
+  "range_low": 10738.7,
+  "range_high": 10884.04,
   "range_coverage": 0.8,
-  "backtest_accuracy": 0.5368,
-  "generated_at": "2026-08-28T19:02:26.702296+00:00"
+  "backtest_accuracy": 0.532,
+  "generated_at": "2026-08-31T14:25:03.696770+00:00"
 }
