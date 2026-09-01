@@ -20,7 +20,7 @@
   },
   "strategy_1d": {
     "model_total_return": 0.9153,
-    "buy_hold_total_return": 1.9786,
+    "buy_hold_total_return": 1.9774,
     "model_sharpe": 0.442,
     "buy_hold_sharpe": 0.669
   },
@@ -31,5 +31,5 @@
   "symbol": "^DJI",
   "key": "dowjones",
   "horizon_days": 1,
-  "generated_at": "2026-08-31T14:19:05.029933+00:00"
+  "generated_at": "2026-09-01T11:57:28.048187+00:00"
 }
