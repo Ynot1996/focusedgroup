@@ -1,35 +1,35 @@
 {
-  "n_predictions": 2718,
+  "n_predictions": 2717,
   "oos_period": [
-    "2015-11-16",
-    "2026-09-09"
+    "2015-11-18",
+    "2026-09-10"
   ],
   "direction": {
-    "accuracy": 0.5438,
+    "accuracy": 0.5388,
     "served_model": "gbdt",
     "model_comparison": {
-      "gbdt": 0.5438,
-      "logistic": 0.5427,
-      "extratrees": 0.5453,
-      "ensemble": 0.546
+      "gbdt": 0.5388,
+      "logistic": 0.5392,
+      "extratrees": 0.5455,
+      "ensemble": 0.5458
     },
-    "baseline_always_up": 0.5449,
-    "baseline_persistence": 0.4831,
-    "auc": 0.5028,
-    "brier": 0.2496
+    "baseline_always_up": 0.5451,
+    "baseline_persistence": 0.4833,
+    "auc": 0.489,
+    "brier": 0.2495
   },
   "strategy_1d": {
-    "model_total_return": 2.5809,
-    "buy_hold_total_return": 2.6975,
-    "model_sharpe": 0.767,
-    "buy_hold_sharpe": 0.769
+    "model_total_return": 2.4081,
+    "buy_hold_total_return": 2.6749,
+    "model_sharpe": 0.74,
+    "buy_hold_sharpe": 0.766
   },
   "range": {
     "target_coverage": 0.8,
-    "actual_coverage": 0.7138
+    "actual_coverage": 0.7155
   },
   "symbol": "^GSPC",
   "key": "sp500",
   "horizon_days": 1,
-  "generated_at": "2026-09-11T11:39:48.840074+00:00"
+  "generated_at": "2026-09-14T13:10:13.017109+00:00"
 }
