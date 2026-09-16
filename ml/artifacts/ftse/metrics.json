@@ -1,35 +1,35 @@
 {
   "n_predictions": 2732,
   "oos_period": [
-    "2015-11-12",
-    "2026-09-14"
+    "2015-11-13",
+    "2026-09-15"
   ],
   "direction": {
-    "accuracy": 0.5282,
+    "accuracy": 0.5256,
     "served_model": "gbdt",
     "model_comparison": {
-      "gbdt": 0.5282,
-      "logistic": 0.5194,
-      "extratrees": 0.5278,
-      "ensemble": 0.5271
+      "gbdt": 0.5256,
+      "logistic": 0.5176,
+      "extratrees": 0.526,
+      "ensemble": 0.5242
     },
-    "baseline_always_up": 0.5344,
-    "baseline_persistence": 0.4978,
-    "auc": 0.5159,
-    "brier": 0.2493
+    "baseline_always_up": 0.5348,
+    "baseline_persistence": 0.4974,
+    "auc": 0.515,
+    "brier": 0.2494
   },
   "strategy_1d": {
-    "model_total_return": 0.6685,
-    "buy_hold_total_return": 0.716,
-    "model_sharpe": 0.409,
-    "buy_hold_sharpe": 0.406
+    "model_total_return": 0.7486,
+    "buy_hold_total_return": 0.7432,
+    "model_sharpe": 0.441,
+    "buy_hold_sharpe": 0.416
   },
   "range": {
     "target_coverage": 0.8,
-    "actual_coverage": 0.7482
+    "actual_coverage": 0.75
   },
   "symbol": "^FTSE",
   "key": "ftse",
   "horizon_days": 1,
-  "generated_at": "2026-09-15T12:08:39.313682+00:00"
+  "generated_at": "2026-09-16T12:02:24.927585+00:00"
 }
