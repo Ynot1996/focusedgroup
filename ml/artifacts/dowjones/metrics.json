@@ -1,35 +1,35 @@
 {
-  "n_predictions": 2718,
+  "n_predictions": 2717,
   "oos_period": [
-    "2015-11-25",
+    "2015-11-27",
     "2026-09-18"
   ],
   "direction": {
-    "accuracy": 0.5379,
+    "accuracy": 0.5396,
     "served_model": "gbdt",
     "model_comparison": {
-      "gbdt": 0.5379,
-      "logistic": 0.5287,
-      "extratrees": 0.5405,
-      "ensemble": 0.5361
+      "gbdt": 0.5396,
+      "logistic": 0.5322,
+      "extratrees": 0.5436,
+      "ensemble": 0.5399
     },
-    "baseline_always_up": 0.5434,
-    "baseline_persistence": 0.4996,
-    "auc": 0.52,
-    "brier": 0.2484
+    "baseline_always_up": 0.5436,
+    "baseline_persistence": 0.4998,
+    "auc": 0.495,
+    "brier": 0.2487
   },
   "strategy_1d": {
-    "model_total_return": 1.6085,
+    "model_total_return": 1.6882,
     "buy_hold_total_return": 1.9219,
-    "model_sharpe": 0.609,
+    "model_sharpe": 0.627,
     "buy_hold_sharpe": 0.659
   },
   "range": {
     "target_coverage": 0.8,
-    "actual_coverage": 0.7219
+    "actual_coverage": 0.7203
   },
   "symbol": "^DJI",
   "key": "dowjones",
   "horizon_days": 1,
-  "generated_at": "2026-09-22T12:00:40.944574+00:00"
+  "generated_at": "2026-09-23T12:00:28.752359+00:00"
 }

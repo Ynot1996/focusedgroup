@@ -4,12 +4,12 @@
   "as_of": "2026-09-21",
   "horizon_days": 1,
   "last_close": 52048.83,
-  "prob_up": 0.5471,
+  "prob_up": 0.567,
   "direction": "up",
-  "confidence": 0.0942,
-  "range_low": 51617.14,
-  "range_high": 52631.29,
+  "confidence": 0.1339,
+  "range_low": 51600.13,
+  "range_high": 52657.59,
   "range_coverage": 0.8,
-  "backtest_accuracy": 0.5379,
-  "generated_at": "2026-09-22T12:00:41.739786+00:00"
+  "backtest_accuracy": 0.5396,
+  "generated_at": "2026-09-23T12:00:29.537221+00:00"
 }
