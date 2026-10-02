@@ -3,13 +3,13 @@
   "key": "dowjones",
   "as_of": "2026-10-01",
   "horizon_days": 1,
-  "last_close": 51013.94,
-  "prob_up": 0.5144,
+  "last_close": 50926.56,
+  "prob_up": 0.5476,
   "direction": "up",
-  "confidence": 0.0289,
-  "range_low": 50476.97,
-  "range_high": 51711.48,
+  "confidence": 0.0953,
+  "range_low": 50304.55,
+  "range_high": 51439.86,
   "range_coverage": 0.8,
-  "backtest_accuracy": 0.5373,
-  "generated_at": "2026-10-01T13:42:21.820964+00:00"
+  "backtest_accuracy": 0.535,
+  "generated_at": "2026-10-02T12:59:34.563863+00:00"
 }
