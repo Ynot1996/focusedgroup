@@ -3,13 +3,13 @@
   "key": "sp500",
   "as_of": "2026-10-13",
   "horizon_days": 1,
-  "last_close": 7804.07,
-  "prob_up": 0.5157,
+  "last_close": 7805.45,
+  "prob_up": 0.5418,
   "direction": "up",
-  "confidence": 0.0314,
-  "range_low": 7752.41,
-  "range_high": 7844.04,
+  "confidence": 0.0836,
+  "range_low": 7762.0,
+  "range_high": 7856.37,
   "range_coverage": 0.8,
-  "backtest_accuracy": 0.5399,
-  "generated_at": "2026-10-13T14:29:22.303898+00:00"
+  "backtest_accuracy": 0.5368,
+  "generated_at": "2026-10-14T12:14:46.541366+00:00"
 }
