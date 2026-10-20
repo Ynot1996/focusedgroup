@@ -19,10 +19,10 @@
     "brier": 0.2489
   },
   "strategy_1d": {
-    "model_total_return": 1.7391,
-    "buy_hold_total_return": 1.9562,
-    "model_sharpe": 0.636,
-    "buy_hold_sharpe": 0.667
+    "model_total_return": 1.7432,
+    "buy_hold_total_return": 1.9607,
+    "model_sharpe": 0.637,
+    "buy_hold_sharpe": 0.668
   },
   "range": {
     "target_coverage": 0.8,
@@ -31,5 +31,5 @@
   "symbol": "^DJI",
   "key": "dowjones",
   "horizon_days": 1,
-  "generated_at": "2026-10-19T13:47:29.637797+00:00"
+  "generated_at": "2026-10-20T11:58:43.811614+00:00"
 }

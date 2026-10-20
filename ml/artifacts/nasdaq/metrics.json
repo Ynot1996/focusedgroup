@@ -19,8 +19,8 @@
     "brier": 0.2485
   },
   "strategy_1d": {
-    "model_total_return": 3.5165,
-    "buy_hold_total_return": 4.2298,
+    "model_total_return": 3.5213,
+    "buy_hold_total_return": 4.2354,
     "model_sharpe": 0.762,
     "buy_hold_sharpe": 0.813
   },
@@ -31,5 +31,5 @@
   "symbol": "^IXIC",
   "key": "nasdaq",
   "horizon_days": 1,
-  "generated_at": "2026-10-19T13:48:52.219069+00:00"
+  "generated_at": "2026-10-20T12:00:47.359755+00:00"
 }

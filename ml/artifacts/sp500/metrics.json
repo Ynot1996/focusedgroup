@@ -19,8 +19,8 @@
     "brier": 0.2496
   },
   "strategy_1d": {
-    "model_total_return": 2.2118,
-    "buy_hold_total_return": 2.7347,
+    "model_total_return": 2.2091,
+    "buy_hold_total_return": 2.7316,
     "model_sharpe": 0.717,
     "buy_hold_sharpe": 0.776
   },
@@ -31,5 +31,5 @@
   "symbol": "^GSPC",
   "key": "sp500",
   "horizon_days": 1,
-  "generated_at": "2026-10-19T13:46:07.783246+00:00"
+  "generated_at": "2026-10-20T11:56:41.664644+00:00"
 }
