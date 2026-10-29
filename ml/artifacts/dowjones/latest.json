@@ -1,15 +1,15 @@
 {
   "symbol": "^DJI",
   "key": "dowjones",
-  "as_of": "2026-10-27",
+  "as_of": "2026-10-28",
   "horizon_days": 1,
-  "last_close": 52377.57,
-  "prob_up": 0.5443,
+  "last_close": 52475.1,
+  "prob_up": 0.5491,
   "direction": "up",
-  "confidence": 0.0886,
-  "range_low": 52065.41,
-  "range_high": 52814.94,
+  "confidence": 0.0982,
+  "range_low": 52191.46,
+  "range_high": 52906.97,
   "range_coverage": 0.8,
-  "backtest_accuracy": 0.5313,
-  "generated_at": "2026-10-28T13:22:09.874322+00:00"
+  "backtest_accuracy": 0.539,
+  "generated_at": "2026-10-29T13:31:46.068393+00:00"
 }
