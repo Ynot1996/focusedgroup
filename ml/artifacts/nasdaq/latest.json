@@ -3,13 +3,13 @@
   "key": "nasdaq",
   "as_of": "2026-10-29",
   "horizon_days": 1,
-  "last_close": 26184.96,
-  "prob_up": 0.569,
+  "last_close": 26184.72,
+  "prob_up": 0.5582,
   "direction": "up",
-  "confidence": 0.1381,
-  "range_low": 25862.32,
-  "range_high": 26593.33,
+  "confidence": 0.1164,
+  "range_low": 25823.25,
+  "range_high": 26634.01,
   "range_coverage": 0.8,
-  "backtest_accuracy": 0.5542,
-  "generated_at": "2026-10-29T13:34:23.931537+00:00"
+  "backtest_accuracy": 0.5574,
+  "generated_at": "2026-10-30T13:24:59.437654+00:00"
 }
