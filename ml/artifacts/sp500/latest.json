@@ -1,15 +1,15 @@
 {
   "symbol": "^GSPC",
   "key": "sp500",
-  "as_of": "2026-11-13",
+  "as_of": "2026-11-16",
   "horizon_days": 1,
-  "last_close": 7581.29,
-  "prob_up": 0.532,
+  "last_close": 7476.14,
+  "prob_up": 0.5434,
   "direction": "up",
-  "confidence": 0.0641,
-  "range_low": 7493.17,
-  "range_high": 7698.05,
+  "confidence": 0.0868,
+  "range_low": 7365.07,
+  "range_high": 7589.32,
   "range_coverage": 0.8,
-  "backtest_accuracy": 0.5395,
-  "generated_at": "2026-11-13T14:47:11.905353+00:00"
+  "backtest_accuracy": 0.543,
+  "generated_at": "2026-11-16T16:14:11.893519+00:00"
 }
