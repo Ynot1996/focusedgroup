@@ -139,4 +139,14 @@ so the index forecasts stay current with no manual step.
 
 ---
 
+## Background
+
+This started as a first university team project — a Flask finance site with
+LSTM "stock prediction." It was rebuilt into the honest, GBDT-based product
+described above; the model was chosen over an LSTM on backtest evidence. The
+full evolution is written up in [`docs/CASE_STUDY.md`](docs/CASE_STUDY.md), and
+the git history is the detailed record.
+
+---
+
 *Educational project, not investment advice.*
