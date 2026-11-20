@@ -16,7 +16,7 @@ The site opens on a splash screen and enters a four-tab dashboard at `/app`:
 
 | Tab | What's there |
 | --- | --- |
-| **Overview** | Next-session forecast cards for FTSE 100, S&P 500, NASDAQ, Dow Jones (probability of up, 80% price range, last close, backtest accuracy) — plus **Predict any stock**: type a ticker, pick US/UK, and the server fetches data, trains a model, and returns a forecast live. |
+| **Overview** | Next-session forecast cards for FTSE 100, S&P 500, NASDAQ, Dow Jones — **click any index** for a detail view (sparkline, range, calibration, deep-link to its charts). A **Today's popular stocks** board shows pre-computed forecasts for the most-followed US tickers (AAPL, NVDA, TSLA…) so visitors see real output instantly. Plus **Predict any stock**: type a ticker, pick US/UK, and the server fetches data, trains a model, and returns a forecast live. |
 | **Performance** | Four interactive charts per index: strategy equity curve vs buy & hold, model-vs-baseline accuracy, price with the predicted range, and a probability-calibration plot — each with a "Details" explanation. |
 | **Model** | A pipeline diagram (data → features → model → backtest → serve), the stack, and an honest note on what the model can and can't do. |
 | **News** | Live UK + US market headlines (The Guardian + MarketWatch RSS) with thumbnails. |
@@ -84,7 +84,8 @@ ml/                             # offline ML (NOT installed on the web server*)
     features.py                 #   leakage-safe feature engineering + labels
     model.py                    #   GBDT, logistic, ExtraTrees, ensemble, quantiles
     backtest.py                 #   walk-forward backtest + metrics
-    run.py                      #   writes ml/artifacts/<index>/*.json
+    popular.py                  #   pre-computes the popular-stocks board
+    run.py                      #   writes ml/artifacts/<index>/*.json + popular.json
   <index>/lstm_essence_*.py     #   legacy LSTM benchmark (reference only)
 templates/                      # Jinja: splash + app/* (base, overview, …)
 static/assets/css/dashboard.css # custom design system (tokens + components)

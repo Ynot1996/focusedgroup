@@ -118,7 +118,15 @@
 		document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
 		b.classList.add('active'); render(b.dataset.key);
 	}));
-	const first = document.querySelector('.tab'); if (first) render(first.dataset.key);
+	// Honor a #key deep-link (e.g. from the overview detail modal), else first tab.
+	const hashKey = (location.hash || '').slice(1);
+	const target = hashKey && document.querySelector(`.tab[data-key="${hashKey}"]`);
+	if (target) {
+		document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+		target.classList.add('active'); render(target.dataset.key);
+	} else {
+		const first = document.querySelector('.tab'); if (first) render(first.dataset.key);
+	}
 
 	const mb = document.getElementById('modal-bg');
 	document.querySelectorAll('.ch-btn').forEach(b => b.addEventListener('click', () => {

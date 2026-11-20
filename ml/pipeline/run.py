@@ -105,6 +105,13 @@ def run_symbol(key: str, symbol: str) -> dict:
 
 
 def main(keys: list[str] | None = None) -> None:
+    # `popular` is a pseudo-key: refresh the watchlist board instead of an index.
+    if keys == ["popular"]:
+        from .popular import build_popular
+        print("--- popular watchlist ---")
+        build_popular()
+        return
+
     keys = keys or list(SYMBOLS)
     for key in keys:
         symbol = SYMBOLS[key]
@@ -113,6 +120,15 @@ def main(keys: list[str] | None = None) -> None:
         print(f"  P(up)={fc['prob_up']}  dir={fc['direction']}  "
               f"close={fc['last_close']}  range=[{fc['range_low']}, {fc['range_high']}]  "
               f"backtest_acc={fc['backtest_accuracy']}")
+
+    # A full run also refreshes the popular-stocks board (best-effort).
+    if keys == list(SYMBOLS):
+        try:
+            from .popular import build_popular
+            print("--- popular watchlist ---")
+            build_popular()
+        except Exception as exc:  # noqa: BLE001 - never let the board sink the run
+            print(f"  ! popular watchlist skipped: {exc}")
 
 
 if __name__ == "__main__":

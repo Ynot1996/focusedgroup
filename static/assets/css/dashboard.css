@@ -238,3 +238,34 @@ body.app a:focus-visible, body.app button:focus-visible { outline: 2px solid var
 #main.dash .news-card .date, #main.dash .fcard .asof, #main.dash .fcard .foot { color: var(--dim); }
 #main.dash .fcard.up .prob { color: var(--up); }
 #main.dash .fcard.down .prob { color: var(--down); }
+
+/* ---- overview: clickable index cards + popular board --------------------- */
+.fcard.clickable { cursor: pointer; transition: border-color .15s, transform .15s, box-shadow .15s; }
+.fcard.clickable:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.35); }
+.fcard.clickable:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.fcard .foot .more { margin-left: auto; color: var(--accent); font-weight: 600; }
+
+.pcard .name .sub { display: block; color: var(--dim); font-size: 0.72rem; font-weight: 500; margin-top: 2px; }
+.pcard .prob { font-size: 2.1rem; }
+.pcard .spark { margin: 0.9rem 0 0.2rem; height: 46px; }
+.pcard .spark svg { display: block; }
+
+.empty-note { margin-top: 2rem; color: var(--dim); font-size: 0.92rem; padding: 1.4rem 0; }
+
+/* ---- index detail modal --------------------------------------------------- */
+.idx-modal-box { max-width: 560px; }
+.idx-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.1rem; }
+.idx-head h3 { margin: 0 0 0.25rem; font-size: 1.35rem; }
+.idx-asof { color: var(--dim); font-size: 0.78rem; }
+.idx-prob { font-size: 1.9rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.idx-prob small { font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-left: 0.3rem; }
+.idx-prob.up { color: var(--up); }
+.idx-prob.down { color: var(--down); }
+.idx-spark { height: 90px; margin: 0.4rem 0 1.3rem; }
+.idx-spark svg { display: block; }
+.idx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1.6rem; }
+.idx-grid > div { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.6rem; font-size: 0.9rem; }
+.idx-grid span { color: var(--muted); }
+.idx-grid b { color: var(--text); font-variant-numeric: tabular-nums; }
+.idx-link { display: inline-block; margin-top: 1.4rem; color: var(--accent); font-weight: 600; font-size: 0.92rem; text-decoration: none; }
+.idx-link:hover { text-decoration: underline; }

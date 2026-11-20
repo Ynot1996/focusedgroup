@@ -8,15 +8,37 @@
 	<p class="lead">{{ t('home.fc_sub') }}</p>
 	<div class="grid grid-4">
 		{% for f in forecasts %}
-		<div class="card fcard {{ f.direction }}">
+		<div class="card fcard clickable {{ f.direction }}" data-key="{{ f.key }}" role="button" tabindex="0" aria-label="{{ f.label }} — {{ t('ov.view_charts') }}">
 			<div class="row-top"><span class="name">{{ f.label }}</span><span class="asof">{{ f.as_of }}</span></div>
 			<div class="prob">{{ '▲' if f.direction == 'up' else '▼' }}{{ (f.prob_up * 100) | round(1) }}<small>% {{ t('forecast.up') if f.direction == 'up' else t('forecast.down') }}</small></div>
 			<div class="meta"><span>{{ t('forecast.range') }}</span><b>{{ f.range_low }}–{{ f.range_high }}</b></div>
 			<div class="meta"><span>{{ t('forecast.last_close') }}</span><b>{{ f.last_close }}</b></div>
-			<div class="foot"><span class="dot"></span>{{ (f.backtest_accuracy * 100) | round(1) }}% {{ t('home.fc_acc') }}</div>
+			<div class="foot"><span class="dot"></span>{{ (f.backtest_accuracy * 100) | round(1) }}% {{ t('home.fc_acc') }}<span class="more">{{ t('ov.click_hint') }}</span></div>
 		</div>
 		{% endfor %}
 	</div>
+</section>
+
+<section class="block">
+	<p class="kicker">{{ t('ov.popular_kicker') }}</p>
+	<h2 class="title">{{ t('ov.popular_heading') }}</h2>
+	<p class="lead">{{ t('ov.popular_sub') }}</p>
+	{% if popular %}
+	<div class="grid grid-4">
+		{% for p in popular %}
+		<div class="card fcard pcard {{ p.direction }}">
+			<div class="row-top"><span class="name">{{ p.ticker }}<span class="sub">{{ p.name }}</span></span><span class="asof">{{ p.as_of }}</span></div>
+			<div class="prob">{{ '▲' if p.direction == 'up' else '▼' }}{{ (p.prob_up * 100) | round(1) }}<small>% {{ t('forecast.up') if p.direction == 'up' else t('forecast.down') }}</small></div>
+			<div class="spark" data-spark="{{ p.spark | tojson | forceescape }}" data-dir="{{ p.direction }}"></div>
+			<div class="meta"><span>{{ t('forecast.range') }}</span><b>{{ p.range_low }}–{{ p.range_high }}</b></div>
+			<div class="meta"><span>{{ t('forecast.last_close') }}</span><b>{{ p.last_close }}</b></div>
+			{% if p.holdout_accuracy %}<div class="foot"><span class="dot"></span>{{ (p.holdout_accuracy * 100) | round(1) }}% {{ t('predict.holdout') }}</div>{% endif %}
+		</div>
+		{% endfor %}
+	</div>
+	{% else %}
+	<div class="empty-note">{{ t('ov.popular_empty') }}</div>
+	{% endif %}
 </section>
 
 <section class="block">
@@ -44,6 +66,13 @@
 		<div class="run-result" id="pk-result"></div>
 	</div>
 </section>
+
+<div class="modal-bg" id="idx-modal">
+	<div class="modal idx-modal-box">
+		<button class="x" id="idx-close" aria-label="Close">✕</button>
+		<div id="idx-body"></div>
+	</div>
+</div>
 {% endblock %}
 
 {% block scripts %}
@@ -53,9 +82,70 @@
 		range: {{ t('forecast.range') | tojson }}, last: {{ t('forecast.last_close') | tojson }},
 		holdout: {{ t('predict.holdout') | tojson }}, days: {{ t('predict.history') | tojson }},
 		result: {{ t('predict.result') | tojson }}, again: {{ t('predict.again') | tojson }},
-		run: {{ t('predict.run') | tojson }}, running: {{ t('predict.running') | tojson }}
+		run: {{ t('predict.run') | tojson }}, running: {{ t('predict.running') | tojson }},
+		conf: {{ t('forecast.confidence') | tojson }}, acc: {{ t('home.fc_acc') | tojson }},
+		viewCharts: {{ t('ov.view_charts') | tojson }}, asof: {{ t('forecast.as_of') | tojson }}
 	};
+	const DETAILS = {{ details | tojson }};
+	const PERF_URL = {{ url_for('dash.performance') | tojson }};
 	const $ = s => document.querySelector(s);
+
+	// --- tiny inline sparkline (no chart lib) ---------------------------------
+	function sparkSVG(values, dir, w = 220, h = 46) {
+		if (!values || values.length < 2) return '';
+		const min = Math.min(...values), max = Math.max(...values);
+		const span = (max - min) || 1, n = values.length;
+		const x = i => (i / (n - 1)) * (w - 2) + 1;
+		const y = v => h - 2 - ((v - min) / span) * (h - 4);
+		const pts = values.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+		const col = dir === 'up' ? 'var(--up)' : 'var(--down)';
+		const area = `1,${h} ${pts} ${w - 1},${h}`;
+		const id = 'g' + Math.random().toString(36).slice(2, 7);
+		return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" preserveAspectRatio="none" aria-hidden="true">
+			<defs><linearGradient id="${id}" x1="0" x2="0" y1="0" y2="1">
+				<stop offset="0" stop-color="${col}" stop-opacity="0.28"/>
+				<stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>
+			<polygon points="${area}" fill="url(#${id})"/>
+			<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+		</svg>`;
+	}
+
+	// render sparklines on the popular cards
+	document.querySelectorAll('.spark[data-spark]').forEach(el => {
+		try { el.innerHTML = sparkSVG(JSON.parse(el.dataset.spark), el.dataset.dir); } catch (e) {}
+	});
+
+	// --- index detail modal ---------------------------------------------------
+	const modal = $('#idx-modal'), body = $('#idx-body');
+	function openDetail(key) {
+		const d = DETAILS[key]; if (!d) return;
+		const dir = d.direction === 'up';
+		const conf = Math.round((d.confidence || 0) * 100);
+		body.innerHTML = `
+			<div class="idx-head">
+				<div><h3>${d.label}</h3><span class="idx-asof">${T.asof} ${d.as_of}</span></div>
+				<div class="idx-prob ${d.direction}">${dir ? '▲' : '▼'} ${(d.prob_up * 100).toFixed(1)}<small>% ${dir ? T.up : T.down}</small></div>
+			</div>
+			<div class="idx-spark">${sparkSVG(d.spark, d.direction, 460, 90)}</div>
+			<div class="idx-grid">
+				<div><span>${T.range}</span><b>${d.range_low}–${d.range_high}</b></div>
+				<div><span>${T.last}</span><b>${d.last_close}</b></div>
+				<div><span>${T.conf}</span><b>${conf}%</b></div>
+				<div><span>${T.acc}</span><b>${(d.backtest_accuracy * 100).toFixed(1)}%</b></div>
+			</div>
+			<a class="idx-link" href="${PERF_URL}#${key}">${T.viewCharts}</a>`;
+		modal.classList.add('show');
+	}
+	function closeDetail() { modal.classList.remove('show'); }
+	document.querySelectorAll('.fcard.clickable').forEach(c => {
+		c.addEventListener('click', () => openDetail(c.dataset.key));
+		c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDetail(c.dataset.key); } });
+	});
+	$('#idx-close').addEventListener('click', closeDetail);
+	modal.addEventListener('click', e => { if (e.target === modal) closeDetail(); });
+	document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+
+	// --- predict-any-stock tool ------------------------------------------------
 	let market = 'US';
 	$('#pk-market').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
 		$('#pk-market').querySelectorAll('button').forEach(x => x.classList.remove('on'));

@@ -4,7 +4,12 @@ from flask import Blueprint, jsonify, render_template, request
 
 from ..news.repo import get_latest
 from ..prediction.live import predict_ticker
-from ..prediction.loader import get_forecast, get_metrics, get_series
+from ..prediction.loader import (
+    get_forecast,
+    get_metrics,
+    get_popular,
+    get_series,
+)
 
 dash_bp = Blueprint("dash", __name__, url_prefix="/app")
 
@@ -26,9 +31,31 @@ def _forecasts():
     return out
 
 
+def _index_details():
+    """Per-index data for the click-through detail modal: the forecast plus a
+    recent close sparkline pulled from the chart series artifact."""
+    details = {}
+    for key, label in INDICES:
+        fc = get_forecast(key)
+        if not fc:
+            continue
+        spark = []
+        s = get_series(key)
+        if s and s.get("price", {}).get("close"):
+            spark = s["price"]["close"][-60:]
+        details[key] = {**fc, "label": label, "spark": spark}
+    return details
+
+
 @dash_bp.route("/")
 def overview():
-    return render_template("app/overview.html", tab="overview", forecasts=_forecasts())
+    return render_template(
+        "app/overview.html",
+        tab="overview",
+        forecasts=_forecasts(),
+        details=_index_details(),
+        popular=get_popular(),
+    )
 
 
 @dash_bp.route("/performance")
