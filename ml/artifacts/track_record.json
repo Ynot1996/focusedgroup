@@ -1,0 +1,313 @@
+{
+  "updated_at": "2026-11-20T02:51:19.122386+00:00",
+  "period": [
+    "2016-01-22",
+    "2026-11-18"
+  ],
+  "overall": {
+    "n": 10885,
+    "hit_rate": 0.5407,
+    "baseline": 0.5454,
+    "coverage": 0.7235
+  },
+  "per_index": [
+    {
+      "key": "ftse",
+      "label": "FTSE 100",
+      "n": 2731,
+      "hit_rate": 0.5339,
+      "baseline": 0.535,
+      "coverage": 0.7532
+    },
+    {
+      "key": "sp500",
+      "label": "S&P 500",
+      "n": 2718,
+      "hit_rate": 0.5397,
+      "baseline": 0.5442,
+      "coverage": 0.7167
+    },
+    {
+      "key": "nasdaq",
+      "label": "NASDAQ",
+      "n": 2718,
+      "hit_rate": 0.5508,
+      "baseline": 0.5589,
+      "coverage": 0.7079
+    },
+    {
+      "key": "dowjones",
+      "label": "Dow Jones",
+      "n": 2718,
+      "hit_rate": 0.5386,
+      "baseline": 0.5434,
+      "coverage": 0.716
+    }
+  ],
+  "recent": [
+    {
+      "date": "2026-11-11",
+      "prob_up": 0.5233,
+      "direction": "up",
+      "actual_up": true,
+      "correct": true,
+      "in_range": true,
+      "realized_ret": 0.0025,
+      "key": "ftse",
+      "label": "FTSE 100"
+    },
+    {
+      "date": "2026-11-11",
+      "prob_up": 0.4856,
+      "direction": "down",
+      "actual_up": false,
+      "correct": true,
+      "in_range": true,
+      "realized_ret": -0.0035,
+      "key": "sp500",
+      "label": "S&P 500"
+    },
+    {
+      "date": "2026-11-11",
+      "prob_up": 0.5412,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0039,
+      "key": "nasdaq",
+      "label": "NASDAQ"
+    },
+    {
+      "date": "2026-11-11",
+      "prob_up": 0.5453,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0036,
+      "key": "dowjones",
+      "label": "Dow Jones"
+    },
+    {
+      "date": "2026-11-12",
+      "prob_up": 0.5266,
+      "direction": "up",
+      "actual_up": true,
+      "correct": true,
+      "in_range": true,
+      "realized_ret": 0.0036,
+      "key": "ftse",
+      "label": "FTSE 100"
+    },
+    {
+      "date": "2026-11-12",
+      "prob_up": 0.5484,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.004,
+      "key": "sp500",
+      "label": "S&P 500"
+    },
+    {
+      "date": "2026-11-12",
+      "prob_up": 0.5601,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0091,
+      "key": "nasdaq",
+      "label": "NASDAQ"
+    },
+    {
+      "date": "2026-11-12",
+      "prob_up": 0.5052,
+      "direction": "up",
+      "actual_up": true,
+      "correct": true,
+      "in_range": true,
+      "realized_ret": 0.001,
+      "key": "dowjones",
+      "label": "Dow Jones"
+    },
+    {
+      "date": "2026-11-13",
+      "prob_up": 0.5261,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0019,
+      "key": "ftse",
+      "label": "FTSE 100"
+    },
+    {
+      "date": "2026-11-13",
+      "prob_up": 0.5775,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0192,
+      "key": "sp500",
+      "label": "S&P 500"
+    },
+    {
+      "date": "2026-11-13",
+      "prob_up": 0.5477,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0249,
+      "key": "nasdaq",
+      "label": "NASDAQ"
+    },
+    {
+      "date": "2026-11-13",
+      "prob_up": 0.5514,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0141,
+      "key": "dowjones",
+      "label": "Dow Jones"
+    },
+    {
+      "date": "2026-11-16",
+      "prob_up": 0.5296,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0176,
+      "key": "ftse",
+      "label": "FTSE 100"
+    },
+    {
+      "date": "2026-11-16",
+      "prob_up": 0.5549,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0103,
+      "key": "sp500",
+      "label": "S&P 500"
+    },
+    {
+      "date": "2026-11-16",
+      "prob_up": 0.5486,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0074,
+      "key": "nasdaq",
+      "label": "NASDAQ"
+    },
+    {
+      "date": "2026-11-16",
+      "prob_up": 0.5533,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0164,
+      "key": "dowjones",
+      "label": "Dow Jones"
+    },
+    {
+      "date": "2026-11-17",
+      "prob_up": 0.5562,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.013,
+      "key": "ftse",
+      "label": "FTSE 100"
+    },
+    {
+      "date": "2026-11-17",
+      "prob_up": 0.5431,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0023,
+      "key": "sp500",
+      "label": "S&P 500"
+    },
+    {
+      "date": "2026-11-17",
+      "prob_up": 0.546,
+      "direction": "up",
+      "actual_up": true,
+      "correct": true,
+      "in_range": true,
+      "realized_ret": 0.0042,
+      "key": "nasdaq",
+      "label": "NASDAQ"
+    },
+    {
+      "date": "2026-11-17",
+      "prob_up": 0.5533,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0111,
+      "key": "dowjones",
+      "label": "Dow Jones"
+    },
+    {
+      "date": "2026-11-18",
+      "prob_up": 0.5231,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0093,
+      "key": "ftse",
+      "label": "FTSE 100"
+    },
+    {
+      "date": "2026-11-18",
+      "prob_up": 0.5431,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0202,
+      "key": "sp500",
+      "label": "S&P 500"
+    },
+    {
+      "date": "2026-11-18",
+      "prob_up": 0.5685,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0225,
+      "key": "nasdaq",
+      "label": "NASDAQ"
+    },
+    {
+      "date": "2026-11-18",
+      "prob_up": 0.5533,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0219,
+      "key": "dowjones",
+      "label": "Dow Jones"
+    }
+  ]
+}

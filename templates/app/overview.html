@@ -19,6 +19,30 @@
 	</div>
 </section>
 
+{% if track and track.overall.n %}
+<section class="block">
+	<p class="kicker">{{ t('track.kicker') }}</p>
+	<h2 class="title">{{ t('track.heading') }}</h2>
+	<p class="lead">{{ t('track.sub') }}</p>
+	<div class="track">
+		<div class="track-stats">
+			<div class="tstat"><div class="tnum">{{ (track.overall.hit_rate * 100) | round(1) }}<small>%</small></div><div class="tlbl">{{ t('track.hitrate') }}</div>{% if track.overall.baseline %}<div class="tsub">{{ (track.overall.baseline * 100) | round(1) }}% {{ t('track.baseline') }}</div>{% endif %}</div>
+			<div class="tstat"><div class="tnum">{{ (track.overall.coverage * 100) | round(1) }}<small>%</small></div><div class="tlbl">{{ t('track.coverage') }}</div></div>
+			<div class="tstat"><div class="tnum">{{ '{:,}'.format(track.overall.n) }}</div><div class="tlbl">{{ t('track.calls') }}</div></div>
+		</div>
+		<div class="track-recent">
+			<div class="trk-lbl">{{ t('track.recent') }}</div>
+			<div class="trk-strip">
+				{% for c in track.recent %}
+				<span class="tick {{ 'hit' if c.correct else 'miss' }}" title="{{ c.label }} · {{ c.date }} · {{ t('track.hit') if c.correct else t('track.miss') }}"></span>
+				{% endfor %}
+			</div>
+			{% if track.period %}<div class="trk-period">{{ t('track.period') }}: {{ track.period[0] }} → {{ track.period[1] }}</div>{% endif %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
 <section class="block">
 	<p class="kicker">{{ t('ov.popular_kicker') }}</p>
 	<h2 class="title">{{ t('ov.popular_heading') }}</h2>

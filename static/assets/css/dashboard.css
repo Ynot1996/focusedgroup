@@ -269,3 +269,20 @@ body.app a:focus-visible, body.app button:focus-visible { outline: 2px solid var
 .idx-grid b { color: var(--text); font-variant-numeric: tabular-nums; }
 .idx-link { display: inline-block; margin-top: 1.4rem; color: var(--accent); font-weight: 600; font-size: 0.92rem; text-decoration: none; }
 .idx-link:hover { text-decoration: underline; }
+
+/* ---- live track record ---------------------------------------------------- */
+.track { display: grid; grid-template-columns: minmax(260px, 340px) 1fr; gap: 1.2rem; margin-top: 2.6rem; }
+.track-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.3rem; }
+.tstat { text-align: center; }
+.tnum { color: var(--accent); font-size: 1.9rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.tnum small { font-size: 0.9rem; font-weight: 600; margin-left: 1px; }
+.tlbl { color: var(--muted); font-size: 0.72rem; margin-top: 0.5rem; line-height: 1.3; }
+.track-recent { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.4rem; display: flex; flex-direction: column; }
+.trk-lbl { color: var(--text); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.9rem; }
+.trk-strip { display: flex; flex-wrap: wrap; gap: 5px; }
+.trk-strip .tick { width: 15px; height: 22px; border-radius: 3px; }
+.trk-strip .tick.hit { background: var(--accent); }
+.trk-strip .tick.miss { background: transparent; border: 1px solid var(--border-2); }
+.trk-period { color: var(--dim); font-size: 0.74rem; margin-top: auto; padding-top: 1rem; font-variant-numeric: tabular-nums; }
+@media (max-width: 720px) { .track { grid-template-columns: 1fr; } }
+.tstat .tsub { color: var(--dim); font-size: 0.66rem; margin-top: 0.3rem; line-height: 1.2; }

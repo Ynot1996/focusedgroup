@@ -9,6 +9,7 @@ from ..prediction.loader import (
     get_metrics,
     get_popular,
     get_series,
+    get_track_record,
 )
 
 dash_bp = Blueprint("dash", __name__, url_prefix="/app")
@@ -55,6 +56,7 @@ def overview():
         forecasts=_forecasts(),
         details=_index_details(),
         popular=get_popular(),
+        track=get_track_record(),
     )
 
 

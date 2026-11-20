@@ -50,6 +50,17 @@ def get_popular() -> list[dict]:
     except (json.JSONDecodeError, OSError):
         return []
 
+
+def get_track_record() -> dict | None:
+    """The live track record (recent out-of-sample calls + scorecard), or None."""
+    path = _ARTIFACTS / "track_record.json"
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text())
+    except (json.JSONDecodeError, OSError):
+        return None
+
 # Forecast/trend charts per index, as static filenames under static/images/.
 # Keys mirror the stock blueprint endpoints (sp500 / dowjones / nasdaq).
 _CHARTS = {

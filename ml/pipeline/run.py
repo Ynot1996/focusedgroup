@@ -105,11 +105,16 @@ def run_symbol(key: str, symbol: str) -> dict:
 
 
 def main(keys: list[str] | None = None) -> None:
-    # `popular` is a pseudo-key: refresh the watchlist board instead of an index.
+    # Pseudo-keys: refresh a derived artifact instead of an index.
     if keys == ["popular"]:
         from .popular import build_popular
         print("--- popular watchlist ---")
         build_popular()
+        return
+    if keys == ["track"]:
+        from .track import build_track_record
+        print("--- track record ---")
+        build_track_record()
         return
 
     keys = keys or list(SYMBOLS)
@@ -121,8 +126,14 @@ def main(keys: list[str] | None = None) -> None:
               f"close={fc['last_close']}  range=[{fc['range_low']}, {fc['range_high']}]  "
               f"backtest_acc={fc['backtest_accuracy']}")
 
-    # A full run also refreshes the popular-stocks board (best-effort).
+    # A full run also refreshes the derived artifacts (best-effort).
     if keys == list(SYMBOLS):
+        try:
+            from .track import build_track_record
+            print("--- track record ---")
+            build_track_record()
+        except Exception as exc:  # noqa: BLE001 - never let it sink the run
+            print(f"  ! track record skipped: {exc}")
         try:
             from .popular import build_popular
             print("--- popular watchlist ---")

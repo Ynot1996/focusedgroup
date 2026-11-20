@@ -21,9 +21,15 @@ The site opens on a splash screen and enters a four-tab dashboard at `/app`:
 | **Model** | A pipeline diagram (data → features → model → backtest → serve), the stack, and an honest note on what the model can and can't do. |
 | **News** | Live UK + US market headlines (The Guardian + MarketWatch RSS) with thumbnails. |
 
+The Overview also carries an **out-of-sample track record**: every walk-forward
+call the model made on the indices, scored against what actually happened the
+next session and shown next to the naive always-up baseline — a directional hit
+rate, 80% range coverage, and a strip of the most recent calls.
+
 > **Honest by design:** daily index direction is close to unpredictable. The app
 > openly reports ~54% accuracy (barely above an "always up" baseline) and shows
-> the full model comparison and calibration rather than inflating the result.
+> the full model comparison, calibration, and live scorecard rather than
+> inflating the result.
 
 ---
 
@@ -83,9 +89,10 @@ ml/                             # offline ML (NOT installed on the web server*)
     data.py                     #   Yahoo Finance OHLCV
     features.py                 #   leakage-safe feature engineering + labels
     model.py                    #   GBDT, logistic, ExtraTrees, ensemble, quantiles
-    backtest.py                 #   walk-forward backtest + metrics
+    backtest.py                 #   walk-forward backtest + metrics + recent calls
+    track.py                    #   live track record from recent OOS calls
     popular.py                  #   pre-computes the popular-stocks board
-    run.py                      #   writes ml/artifacts/<index>/*.json + popular.json
+    run.py                      #   writes ml/artifacts/ (indices, track, popular)
   <index>/lstm_essence_*.py     #   legacy LSTM benchmark (reference only)
 templates/                      # Jinja: splash + app/* (base, overview, …)
 static/assets/css/dashboard.css # custom design system (tokens + components)

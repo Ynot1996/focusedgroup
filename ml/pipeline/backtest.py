@@ -100,6 +100,27 @@ def walk_forward(
     eq_model = np.cumprod(1 + np.nan_to_num(strat_daily))
     eq_bh = np.cumprod(1 + np.nan_to_num(bh_daily))
     dates_oos = [usable.index[idx].date().isoformat() for idx in res["idx"].to_numpy()]
+
+    # --- recent out-of-sample calls, for the live track record ---
+    # Genuine walk-forward predictions (train on the past, score on the realized
+    # next session) — the same series the Performance tab plots, exposed per-day
+    # so the overview can show an honest, growing scorecard.
+    pu = res["prob_up"].to_numpy()
+    fr = res["fwd_ret"].to_numpy()
+    inside_arr = inside.to_numpy()
+    n_recent = min(60, len(res))
+    recent_calls = [
+        {
+            "date": dates_oos[j],
+            "prob_up": round(float(pu[j]), 4),
+            "direction": "up" if pu[j] > 0.5 else "down",
+            "actual_up": bool(y_arr[j] == 1),
+            "correct": bool((pu[j] > 0.5) == (y_arr[j] == 1)),
+            "in_range": bool(inside_arr[j]),
+            "realized_ret": round(float(fr[j]), 4),
+        }
+        for j in range(len(res) - n_recent, len(res))
+    ]
     stepd = max(1, len(eq_model) // 200)
     equity = {
         "dates": dates_oos[::stepd],
@@ -149,4 +170,5 @@ def walk_forward(
             "target_coverage": q_high - q_low,
             "actual_coverage": round(coverage, 4),
         },
+        "recent_calls": recent_calls,
     }
