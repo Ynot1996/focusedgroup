@@ -1,55 +1,37 @@
 {
-  "n_predictions": 2718,
+  "n_predictions": 2719,
   "oos_period": [
-    "2016-01-29",
-    "2026-11-18"
+    "2016-02-01",
+    "2026-11-20"
   ],
   "direction": {
-    "accuracy": 0.5508,
+    "accuracy": 0.555,
     "served_model": "gbdt",
     "model_comparison": {
-      "gbdt": 0.5508,
-      "logistic": 0.5471,
-      "extratrees": 0.5559,
-      "ensemble": 0.5548
+      "gbdt": 0.555,
+      "logistic": 0.5462,
+      "extratrees": 0.5557,
+      "ensemble": 0.5598
     },
-    "baseline_always_up": 0.5589,
-    "baseline_persistence": 0.4956,
-    "auc": 0.4889,
+    "baseline_always_up": 0.5587,
+    "baseline_persistence": 0.4954,
+    "auc": 0.4853,
     "brier": 0.2478
   },
   "strategy_1d": {
-    "model_total_return": 3.5064,
-    "buy_hold_total_return": 4.1754,
-    "model_sharpe": 0.76,
-    "buy_hold_sharpe": 0.808
+    "model_total_return": 4.3841,
+    "buy_hold_total_return": 4.2218,
+    "model_sharpe": 0.838,
+    "buy_hold_sharpe": 0.807
   },
   "range": {
     "target_coverage": 0.8,
-    "actual_coverage": 0.7079
+    "actual_coverage": 0.7113
   },
   "recent_calls": [
     {
-      "date": "2026-08-26",
-      "prob_up": 0.5643,
-      "direction": "up",
-      "actual_up": true,
-      "correct": true,
-      "in_range": false,
-      "realized_ret": 0.0157
-    },
-    {
-      "date": "2026-08-27",
-      "prob_up": 0.5728,
-      "direction": "up",
-      "actual_up": false,
-      "correct": false,
-      "in_range": true,
-      "realized_ret": -0.0052
-    },
-    {
       "date": "2026-08-28",
-      "prob_up": 0.5626,
+      "prob_up": 0.5674,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -58,7 +40,7 @@
     },
     {
       "date": "2026-08-31",
-      "prob_up": 0.5524,
+      "prob_up": 0.5627,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -67,7 +49,7 @@
     },
     {
       "date": "2026-09-01",
-      "prob_up": 0.5524,
+      "prob_up": 0.5627,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -76,7 +58,7 @@
     },
     {
       "date": "2026-09-02",
-      "prob_up": 0.5524,
+      "prob_up": 0.5627,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -85,7 +67,7 @@
     },
     {
       "date": "2026-09-03",
-      "prob_up": 0.561,
+      "prob_up": 0.5577,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -94,7 +76,7 @@
     },
     {
       "date": "2026-09-04",
-      "prob_up": 0.5524,
+      "prob_up": 0.5627,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -103,7 +85,7 @@
     },
     {
       "date": "2026-09-08",
-      "prob_up": 0.5507,
+      "prob_up": 0.5616,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -112,7 +94,7 @@
     },
     {
       "date": "2026-09-09",
-      "prob_up": 0.5539,
+      "prob_up": 0.5627,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -121,7 +103,7 @@
     },
     {
       "date": "2026-09-10",
-      "prob_up": 0.5539,
+      "prob_up": 0.559,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -130,7 +112,7 @@
     },
     {
       "date": "2026-09-11",
-      "prob_up": 0.5481,
+      "prob_up": 0.5612,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -139,7 +121,7 @@
     },
     {
       "date": "2026-09-14",
-      "prob_up": 0.5539,
+      "prob_up": 0.559,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -148,7 +130,7 @@
     },
     {
       "date": "2026-09-15",
-      "prob_up": 0.5528,
+      "prob_up": 0.5393,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -157,7 +139,7 @@
     },
     {
       "date": "2026-09-16",
-      "prob_up": 0.5425,
+      "prob_up": 0.5513,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -166,7 +148,7 @@
     },
     {
       "date": "2026-09-17",
-      "prob_up": 0.5565,
+      "prob_up": 0.5684,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -175,7 +157,7 @@
     },
     {
       "date": "2026-09-18",
-      "prob_up": 0.5476,
+      "prob_up": 0.5608,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -184,7 +166,7 @@
     },
     {
       "date": "2026-09-21",
-      "prob_up": 0.5665,
+      "prob_up": 0.5562,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -193,7 +175,7 @@
     },
     {
       "date": "2026-09-22",
-      "prob_up": 0.5736,
+      "prob_up": 0.5795,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -202,7 +184,7 @@
     },
     {
       "date": "2026-09-23",
-      "prob_up": 0.5744,
+      "prob_up": 0.5778,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -211,7 +193,7 @@
     },
     {
       "date": "2026-09-24",
-      "prob_up": 0.5755,
+      "prob_up": 0.562,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -220,7 +202,7 @@
     },
     {
       "date": "2026-09-25",
-      "prob_up": 0.5694,
+      "prob_up": 0.562,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -229,7 +211,7 @@
     },
     {
       "date": "2026-09-28",
-      "prob_up": 0.5539,
+      "prob_up": 0.5536,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -238,7 +220,7 @@
     },
     {
       "date": "2026-09-29",
-      "prob_up": 0.5508,
+      "prob_up": 0.5514,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -247,7 +229,7 @@
     },
     {
       "date": "2026-09-30",
-      "prob_up": 0.5487,
+      "prob_up": 0.5514,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -256,7 +238,7 @@
     },
     {
       "date": "2026-10-01",
-      "prob_up": 0.5508,
+      "prob_up": 0.5514,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -265,7 +247,7 @@
     },
     {
       "date": "2026-10-02",
-      "prob_up": 0.5647,
+      "prob_up": 0.5736,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -274,7 +256,7 @@
     },
     {
       "date": "2026-10-05",
-      "prob_up": 0.5704,
+      "prob_up": 0.5579,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -283,7 +265,7 @@
     },
     {
       "date": "2026-10-06",
-      "prob_up": 0.5591,
+      "prob_up": 0.5597,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -292,7 +274,7 @@
     },
     {
       "date": "2026-10-07",
-      "prob_up": 0.5755,
+      "prob_up": 0.5579,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -301,7 +283,7 @@
     },
     {
       "date": "2026-10-08",
-      "prob_up": 0.5624,
+      "prob_up": 0.5536,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -310,7 +292,7 @@
     },
     {
       "date": "2026-10-09",
-      "prob_up": 0.5603,
+      "prob_up": 0.5581,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -319,7 +301,7 @@
     },
     {
       "date": "2026-10-12",
-      "prob_up": 0.5628,
+      "prob_up": 0.5664,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -328,7 +310,7 @@
     },
     {
       "date": "2026-10-13",
-      "prob_up": 0.5628,
+      "prob_up": 0.5634,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -337,7 +319,7 @@
     },
     {
       "date": "2026-10-14",
-      "prob_up": 0.5529,
+      "prob_up": 0.5598,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -346,7 +328,7 @@
     },
     {
       "date": "2026-10-15",
-      "prob_up": 0.5521,
+      "prob_up": 0.5598,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -355,7 +337,7 @@
     },
     {
       "date": "2026-10-16",
-      "prob_up": 0.5572,
+      "prob_up": 0.5579,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -364,7 +346,7 @@
     },
     {
       "date": "2026-10-19",
-      "prob_up": 0.5644,
+      "prob_up": 0.5711,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -373,7 +355,7 @@
     },
     {
       "date": "2026-10-20",
-      "prob_up": 0.5533,
+      "prob_up": 0.5583,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -382,7 +364,7 @@
     },
     {
       "date": "2026-10-21",
-      "prob_up": 0.5508,
+      "prob_up": 0.5432,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -391,7 +373,7 @@
     },
     {
       "date": "2026-10-22",
-      "prob_up": 0.5521,
+      "prob_up": 0.5579,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -400,7 +382,7 @@
     },
     {
       "date": "2026-10-23",
-      "prob_up": 0.5533,
+      "prob_up": 0.5663,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -409,7 +391,7 @@
     },
     {
       "date": "2026-10-26",
-      "prob_up": 0.5508,
+      "prob_up": 0.558,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -418,7 +400,7 @@
     },
     {
       "date": "2026-10-27",
-      "prob_up": 0.5584,
+      "prob_up": 0.5432,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -427,7 +409,7 @@
     },
     {
       "date": "2026-10-28",
-      "prob_up": 0.5584,
+      "prob_up": 0.5519,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -436,7 +418,7 @@
     },
     {
       "date": "2026-10-29",
-      "prob_up": 0.5533,
+      "prob_up": 0.5583,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -445,7 +427,7 @@
     },
     {
       "date": "2026-10-30",
-      "prob_up": 0.5521,
+      "prob_up": 0.5579,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -454,7 +436,7 @@
     },
     {
       "date": "2026-11-02",
-      "prob_up": 0.5466,
+      "prob_up": 0.5459,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -463,7 +445,7 @@
     },
     {
       "date": "2026-11-03",
-      "prob_up": 0.5519,
+      "prob_up": 0.5459,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -472,7 +454,7 @@
     },
     {
       "date": "2026-11-04",
-      "prob_up": 0.5628,
+      "prob_up": 0.5671,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -481,7 +463,7 @@
     },
     {
       "date": "2026-11-05",
-      "prob_up": 0.546,
+      "prob_up": 0.5453,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -490,7 +472,7 @@
     },
     {
       "date": "2026-11-06",
-      "prob_up": 0.5412,
+      "prob_up": 0.5454,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -499,7 +481,7 @@
     },
     {
       "date": "2026-11-09",
-      "prob_up": 0.5489,
+      "prob_up": 0.5331,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -508,7 +490,7 @@
     },
     {
       "date": "2026-11-10",
-      "prob_up": 0.5449,
+      "prob_up": 0.5527,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -517,7 +499,7 @@
     },
     {
       "date": "2026-11-11",
-      "prob_up": 0.5412,
+      "prob_up": 0.5502,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -526,7 +508,7 @@
     },
     {
       "date": "2026-11-12",
-      "prob_up": 0.5601,
+      "prob_up": 0.5583,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -535,7 +517,7 @@
     },
     {
       "date": "2026-11-13",
-      "prob_up": 0.5477,
+      "prob_up": 0.5448,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -544,7 +526,7 @@
     },
     {
       "date": "2026-11-16",
-      "prob_up": 0.5486,
+      "prob_up": 0.5527,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -553,7 +535,7 @@
     },
     {
       "date": "2026-11-17",
-      "prob_up": 0.546,
+      "prob_up": 0.5527,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -562,16 +544,34 @@
     },
     {
       "date": "2026-11-18",
-      "prob_up": 0.5685,
+      "prob_up": 0.5502,
       "direction": "up",
       "actual_up": false,
       "correct": false,
       "in_range": false,
       "realized_ret": -0.0225
+    },
+    {
+      "date": "2026-11-19",
+      "prob_up": 0.5448,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0528
+    },
+    {
+      "date": "2026-11-20",
+      "prob_up": 0.5639,
+      "direction": "up",
+      "actual_up": true,
+      "correct": true,
+      "in_range": false,
+      "realized_ret": 0.0667
     }
   ],
   "symbol": "^IXIC",
   "key": "nasdaq",
   "horizon_days": 1,
-  "generated_at": "2026-11-20T02:47:33.025332+00:00"
+  "generated_at": "2026-11-23T18:41:32.821442+00:00"
 }
