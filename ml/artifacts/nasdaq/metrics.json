@@ -1,43 +1,34 @@
 {
-  "n_predictions": 2719,
+  "n_predictions": 2720,
   "oos_period": [
     "2016-02-01",
-    "2026-11-20"
+    "2026-11-23"
   ],
   "direction": {
-    "accuracy": 0.555,
+    "accuracy": 0.5548,
     "served_model": "gbdt",
     "model_comparison": {
-      "gbdt": 0.555,
-      "logistic": 0.5462,
-      "extratrees": 0.5557,
-      "ensemble": 0.5598
+      "gbdt": 0.5548,
+      "logistic": 0.5463,
+      "extratrees": 0.5555,
+      "ensemble": 0.5599
     },
-    "baseline_always_up": 0.5587,
-    "baseline_persistence": 0.4954,
-    "auc": 0.4853,
+    "baseline_always_up": 0.5585,
+    "baseline_persistence": 0.4952,
+    "auc": 0.4857,
     "brier": 0.2478
   },
   "strategy_1d": {
-    "model_total_return": 4.3841,
-    "buy_hold_total_return": 4.2218,
-    "model_sharpe": 0.838,
-    "buy_hold_sharpe": 0.807
+    "model_total_return": 4.3034,
+    "buy_hold_total_return": 4.1435,
+    "model_sharpe": 0.831,
+    "buy_hold_sharpe": 0.801
   },
   "range": {
     "target_coverage": 0.8,
-    "actual_coverage": 0.7113
+    "actual_coverage": 0.7114
   },
   "recent_calls": [
-    {
-      "date": "2026-08-28",
-      "prob_up": 0.5674,
-      "direction": "up",
-      "actual_up": false,
-      "correct": false,
-      "in_range": true,
-      "realized_ret": -0.0012
-    },
     {
       "date": "2026-08-31",
       "prob_up": 0.5627,
@@ -567,11 +558,20 @@
       "actual_up": true,
       "correct": true,
       "in_range": false,
-      "realized_ret": 0.0667
+      "realized_ret": 0.0651
+    },
+    {
+      "date": "2026-11-23",
+      "prob_up": 0.502,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0135
     }
   ],
   "symbol": "^IXIC",
   "key": "nasdaq",
   "horizon_days": 1,
-  "generated_at": "2026-11-23T18:41:32.821442+00:00"
+  "generated_at": "2026-11-24T18:09:42.915948+00:00"
 }
