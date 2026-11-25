@@ -1,108 +1,64 @@
 {
-  "updated_at": "2026-11-24T18:12:31.628773+00:00",
+  "updated_at": "2026-11-25T17:36:25.698348+00:00",
   "period": [
-    "2016-01-26",
-    "2026-11-23"
+    "2016-01-27",
+    "2026-11-24"
   ],
   "overall": {
     "n": 10892,
-    "hit_rate": 0.5405,
-    "baseline": 0.5453,
-    "coverage": 0.7246
+    "hit_rate": 0.5356,
+    "baseline": 0.5452,
+    "coverage": 0.7234
   },
   "per_index": [
     {
       "key": "ftse",
       "label": "FTSE 100",
       "n": 2732,
-      "hit_rate": 0.5282,
-      "baseline": 0.5348,
+      "hit_rate": 0.5289,
+      "baseline": 0.5344,
       "coverage": 0.7522
     },
     {
       "key": "sp500",
       "label": "S&P 500",
       "n": 2720,
-      "hit_rate": 0.5423,
+      "hit_rate": 0.5331,
       "baseline": 0.5441,
-      "coverage": 0.7143
+      "coverage": 0.7147
     },
     {
       "key": "nasdaq",
       "label": "NASDAQ",
       "n": 2720,
-      "hit_rate": 0.5548,
+      "hit_rate": 0.5482,
       "baseline": 0.5585,
-      "coverage": 0.7114
+      "coverage": 0.7059
     },
     {
       "key": "dowjones",
       "label": "Dow Jones",
       "n": 2720,
-      "hit_rate": 0.5368,
+      "hit_rate": 0.5324,
       "baseline": 0.5437,
-      "coverage": 0.7202
+      "coverage": 0.7206
     }
   ],
   "recent": [
     {
-      "date": "2026-11-16",
-      "prob_up": 0.4612,
-      "direction": "down",
-      "actual_up": false,
-      "correct": true,
-      "in_range": false,
-      "realized_ret": -0.0176,
-      "key": "ftse",
-      "label": "FTSE 100"
-    },
-    {
-      "date": "2026-11-16",
-      "prob_up": 0.5499,
-      "direction": "up",
-      "actual_up": false,
-      "correct": false,
-      "in_range": true,
-      "realized_ret": -0.0103,
-      "key": "sp500",
-      "label": "S&P 500"
-    },
-    {
-      "date": "2026-11-16",
-      "prob_up": 0.5527,
-      "direction": "up",
-      "actual_up": false,
-      "correct": false,
-      "in_range": true,
-      "realized_ret": -0.0074,
-      "key": "nasdaq",
-      "label": "NASDAQ"
-    },
-    {
-      "date": "2026-11-16",
-      "prob_up": 0.5502,
-      "direction": "up",
-      "actual_up": false,
-      "correct": false,
-      "in_range": false,
-      "realized_ret": -0.0164,
-      "key": "dowjones",
-      "label": "Dow Jones"
-    },
-    {
       "date": "2026-11-17",
-      "prob_up": 0.5463,
+      "prob_up": 0.541,
       "direction": "up",
       "actual_up": false,
       "correct": false,
-      "in_range": false,
+      "in_range": true,
       "realized_ret": -0.013,
       "key": "ftse",
       "label": "FTSE 100"
     },
     {
       "date": "2026-11-17",
-      "prob_up": 0.5433,
+      "prob_up": 0.5504,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -113,7 +69,7 @@
     },
     {
       "date": "2026-11-17",
-      "prob_up": 0.5527,
+      "prob_up": 0.5525,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -124,7 +80,7 @@
     },
     {
       "date": "2026-11-17",
-      "prob_up": 0.5502,
+      "prob_up": 0.5532,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -135,7 +91,7 @@
     },
     {
       "date": "2026-11-18",
-      "prob_up": 0.5408,
+      "prob_up": 0.541,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -146,7 +102,7 @@
     },
     {
       "date": "2026-11-18",
-      "prob_up": 0.547,
+      "prob_up": 0.5504,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -157,7 +113,7 @@
     },
     {
       "date": "2026-11-18",
-      "prob_up": 0.5502,
+      "prob_up": 0.5525,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -168,7 +124,7 @@
     },
     {
       "date": "2026-11-18",
-      "prob_up": 0.5502,
+      "prob_up": 0.5532,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -179,7 +135,7 @@
     },
     {
       "date": "2026-11-19",
-      "prob_up": 0.5278,
+      "prob_up": 0.541,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -190,7 +146,7 @@
     },
     {
       "date": "2026-11-19",
-      "prob_up": 0.5315,
+      "prob_up": 0.5809,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -201,7 +157,7 @@
     },
     {
       "date": "2026-11-19",
-      "prob_up": 0.5448,
+      "prob_up": 0.5525,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -212,7 +168,7 @@
     },
     {
       "date": "2026-11-19",
-      "prob_up": 0.5706,
+      "prob_up": 0.5532,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -223,7 +179,7 @@
     },
     {
       "date": "2026-11-20",
-      "prob_up": 0.5352,
+      "prob_up": 0.5367,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -234,7 +190,7 @@
     },
     {
       "date": "2026-11-20",
-      "prob_up": 0.562,
+      "prob_up": 0.5606,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -245,7 +201,7 @@
     },
     {
       "date": "2026-11-20",
-      "prob_up": 0.5639,
+      "prob_up": 0.562,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -256,7 +212,7 @@
     },
     {
       "date": "2026-11-20",
-      "prob_up": 0.5502,
+      "prob_up": 0.5532,
       "direction": "up",
       "actual_up": true,
       "correct": true,
@@ -267,7 +223,7 @@
     },
     {
       "date": "2026-11-23",
-      "prob_up": 0.5291,
+      "prob_up": 0.5376,
       "direction": "up",
       "actual_up": false,
       "correct": false,
@@ -278,34 +234,78 @@
     },
     {
       "date": "2026-11-23",
-      "prob_up": 0.5137,
-      "direction": "up",
+      "prob_up": 0.4527,
+      "direction": "down",
       "actual_up": false,
-      "correct": false,
+      "correct": true,
       "in_range": true,
-      "realized_ret": -0.0039,
+      "realized_ret": -0.005,
       "key": "sp500",
       "label": "S&P 500"
     },
     {
       "date": "2026-11-23",
-      "prob_up": 0.502,
-      "direction": "up",
+      "prob_up": 0.4736,
+      "direction": "down",
       "actual_up": false,
-      "correct": false,
+      "correct": true,
       "in_range": true,
-      "realized_ret": -0.0135,
+      "realized_ret": -0.0148,
       "key": "nasdaq",
       "label": "NASDAQ"
     },
     {
       "date": "2026-11-23",
-      "prob_up": 0.5328,
+      "prob_up": 0.5296,
       "direction": "up",
       "actual_up": true,
       "correct": true,
       "in_range": true,
       "realized_ret": 0.0085,
+      "key": "dowjones",
+      "label": "Dow Jones"
+    },
+    {
+      "date": "2026-11-24",
+      "prob_up": 0.5258,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.0038,
+      "key": "ftse",
+      "label": "FTSE 100"
+    },
+    {
+      "date": "2026-11-24",
+      "prob_up": 0.5577,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0168,
+      "key": "sp500",
+      "label": "S&P 500"
+    },
+    {
+      "date": "2026-11-24",
+      "prob_up": 0.5488,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": false,
+      "realized_ret": -0.0247,
+      "key": "nasdaq",
+      "label": "NASDAQ"
+    },
+    {
+      "date": "2026-11-24",
+      "prob_up": 0.5512,
+      "direction": "up",
+      "actual_up": false,
+      "correct": false,
+      "in_range": true,
+      "realized_ret": -0.005,
       "key": "dowjones",
       "label": "Dow Jones"
     }

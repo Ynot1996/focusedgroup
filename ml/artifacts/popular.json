@@ -1,20 +1,19 @@
 {
-  "generated_at": "2026-11-24T18:12:38.695785+00:00",
-  "as_of": "2026-11-24",
+  "generated_at": "2026-11-25T17:36:30.712283+00:00",
+  "as_of": "2026-11-25",
   "items": [
     {
       "ticker": "AAPL",
       "name": "Apple",
-      "as_of": "2026-11-24",
-      "last_close": 353.39,
-      "prob_up": 0.5326,
+      "as_of": "2026-11-25",
+      "last_close": 352.24,
+      "prob_up": 0.5323,
       "direction": "up",
-      "confidence": 0.0651,
-      "range_low": 346.34,
-      "range_high": 359.74,
-      "holdout_accuracy": 0.5346,
+      "confidence": 0.0646,
+      "range_low": 345.54,
+      "range_high": 359.76,
+      "holdout_accuracy": 0.5337,
       "spark": [
-        333.02,
         330.32,
         333.69,
         332.89,
@@ -53,22 +52,22 @@
         349.21,
         342.56,
         349.08,
-        353.39
+        354.07,
+        352.24
       ]
     },
     {
       "ticker": "NVDA",
       "name": "NVIDIA",
-      "as_of": "2026-11-24",
-      "last_close": 152.77,
-      "prob_up": 0.5309,
-      "direction": "up",
-      "confidence": 0.0619,
-      "range_low": 147.12,
-      "range_high": 161.19,
-      "holdout_accuracy": 0.5177,
+      "as_of": "2026-11-25",
+      "last_close": 144.16,
+      "prob_up": 0.4892,
+      "direction": "down",
+      "confidence": 0.0217,
+      "range_low": 136.13,
+      "range_high": 154.25,
+      "holdout_accuracy": 0.5185,
       "spark": [
-        228.38,
         230.86,
         233.95,
         238.9,
@@ -107,22 +106,22 @@
         145.98,
         125.53,
         165.05,
-        152.77
+        155.38,
+        144.16
       ]
     },
     {
       "ticker": "TSLA",
       "name": "Tesla",
-      "as_of": "2026-11-24",
-      "last_close": 384.15,
-      "prob_up": 0.5064,
+      "as_of": "2026-11-25",
+      "last_close": 367.43,
+      "prob_up": 0.502,
       "direction": "up",
-      "confidence": 0.0129,
-      "range_low": 372.37,
-      "range_high": 396.94,
-      "holdout_accuracy": 0.5059,
+      "confidence": 0.0039,
+      "range_low": 355.81,
+      "range_high": 379.86,
+      "holdout_accuracy": 0.5051,
       "spark": [
-        354.81,
         354.11,
         370.59,
         378.73,
@@ -161,22 +160,22 @@
         374.41,
         345.82,
         385.46,
-        384.15
+        384.68,
+        367.43
       ]
     },
     {
       "ticker": "MSFT",
       "name": "Microsoft",
-      "as_of": "2026-11-24",
-      "last_close": 498.35,
-      "prob_up": 0.504,
+      "as_of": "2026-11-25",
+      "last_close": 487.13,
+      "prob_up": 0.5559,
       "direction": "up",
-      "confidence": 0.008,
-      "range_low": 488.84,
-      "range_high": 511.54,
-      "holdout_accuracy": 0.5211,
+      "confidence": 0.1117,
+      "range_low": 475.43,
+      "range_high": 501.01,
+      "holdout_accuracy": 0.5202,
       "spark": [
-        512.9,
         512.8,
         517.53,
         525.18,
@@ -215,22 +214,22 @@
         498.3,
         484.52,
         492.5,
-        498.35
+        496.13,
+        487.13
       ]
     },
     {
       "ticker": "AMZN",
       "name": "Amazon",
-      "as_of": "2026-11-24",
-      "last_close": 252.62,
-      "prob_up": 0.5415,
+      "as_of": "2026-11-25",
+      "last_close": 244.13,
+      "prob_up": 0.5133,
       "direction": "up",
-      "confidence": 0.0829,
-      "range_low": 246.99,
-      "range_high": 260.24,
-      "holdout_accuracy": 0.5093,
+      "confidence": 0.0265,
+      "range_low": 233.43,
+      "range_high": 251.26,
+      "holdout_accuracy": 0.5084,
       "spark": [
-        249.15,
         248.23,
         251.52,
         251.4,
@@ -269,22 +268,22 @@
         257.37,
         246.82,
         255.39,
-        252.62
+        252.29,
+        244.13
       ]
     },
     {
       "ticker": "GOOGL",
       "name": "Alphabet",
-      "as_of": "2026-11-24",
-      "last_close": 279.05,
-      "prob_up": 0.5349,
+      "as_of": "2026-11-25",
+      "last_close": 270.16,
+      "prob_up": 0.5259,
       "direction": "up",
-      "confidence": 0.0699,
-      "range_low": 272.36,
-      "range_high": 287.82,
-      "holdout_accuracy": 0.5211,
+      "confidence": 0.0518,
+      "range_low": 260.28,
+      "range_high": 280.05,
+      "holdout_accuracy": 0.5202,
       "spark": [
-        344.08,
         338.24,
         343.5,
         346.47,
@@ -323,22 +322,22 @@
         272.66,
         265.29,
         282.1,
-        279.05
+        279.05,
+        270.16
       ]
     },
     {
       "ticker": "META",
       "name": "Meta",
-      "as_of": "2026-11-24",
-      "last_close": 593.32,
-      "prob_up": 0.5329,
+      "as_of": "2026-11-25",
+      "last_close": 596.69,
+      "prob_up": 0.549,
       "direction": "up",
-      "confidence": 0.0657,
-      "range_low": 572.31,
-      "range_high": 614.72,
-      "holdout_accuracy": 0.5118,
+      "confidence": 0.098,
+      "range_low": 571.88,
+      "range_high": 615.46,
+      "holdout_accuracy": 0.5,
       "spark": [
-        725.18,
         725.93,
         728.08,
         741.9,
@@ -377,22 +376,22 @@
         596.22,
         560.84,
         597.6,
-        593.32
+        589.82,
+        596.69
       ]
     },
     {
       "ticker": "AMD",
       "name": "AMD",
-      "as_of": "2026-11-24",
-      "last_close": 409.43,
-      "prob_up": 0.5436,
+      "as_of": "2026-11-25",
+      "last_close": 386.99,
+      "prob_up": 0.5394,
       "direction": "up",
-      "confidence": 0.0871,
-      "range_low": 398.88,
-      "range_high": 435.31,
-      "holdout_accuracy": 0.5126,
+      "confidence": 0.0789,
+      "range_low": 362.14,
+      "range_high": 431.22,
+      "holdout_accuracy": 0.5118,
       "spark": [
-        611.76,
         615.73,
         633.91,
         631.75,
@@ -431,7 +430,8 @@
         489.19,
         424.39,
         453.46,
-        409.43
+        413.27,
+        386.99
       ]
     }
   ]
